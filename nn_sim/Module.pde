@@ -114,11 +114,11 @@ public class NeuronModule extends Module{
   public void draw(){
     fill(0);
     stroke(0, 255, 255);
-    strokeWeight(3);
+    strokeWeight(2);
     circle(this.pos.x, this.pos.y, 60);
     fill(0, 255, 255);
-    textSize(24);
-    text("N", this.pos.x, this.pos.y);
+    textSize(32);
+    text("N", this.pos.x, this.pos.y+8);
   }
   
   public Num forward(){

@@ -6,13 +6,28 @@ class Connector{
     this.port2 = null;
   }
   
-  public void update(){
+  public void show(){
     stroke(255);
     strokeWeight(3);
     if (this.port2 == null){
-      line(port1.getAbsX(), port1.getAbsY(), mouseX, mouseY);
+      dottedLine(port1.getAbsX(), port1.getAbsY(), mouseX, mouseY);
     }else{
-      line(port1.getAbsX(), port1.getAbsY(), port2.getAbsX(), port2.getAbsY());
+      flowingLine(port1.getAbsX(), port1.getAbsY(), port2.getAbsX(), port2.getAbsY());
+    }
+  }
+  
+  public boolean connect(Port otherPort){
+    if (this.port1.isInput != otherPort.isInput && this.port1.parent != otherPort.parent){
+      this.port2 = otherPort;
+      this.port2.connect(this);
+      if (this.port2 instanceof OutputPort){
+        Port temp = this.port1;
+        this.port1 = this.port2;
+        this.port2 = temp;
+      }
+      return true;
+    }else{
+      return false;
     }
   }
   

@@ -1,11 +1,14 @@
 
 public abstract class Port{
   public Module parent;
+  public boolean occupied = false;
   private PVector pos;
+  public boolean isInput;
   public ArrayList<Connector> connectors = new ArrayList<Connector>();
   public Port(Module parent, PVector pos){
     this.parent = parent;
     this.pos = pos;
+    ports.add(this);
   }
   
   public ArrayList<Port> getOtherEnds(){
@@ -38,22 +41,31 @@ public abstract class Port{
     return pos.y;
   }
   
+  public boolean mouseIsIn(){
+    return dist(getAbsX(), getAbsY(), mouseX, mouseY) < 5;
+  }
+  
   public Port connect(Connector connector){
     this.connectors.add(connector);
     return this;
   }
   
   
+  
+  
 }
 
 public class InputPort extends Port{
+  
   public InputPort(Module parent, PVector pos){
     super(parent, pos);
+    isInput = true;
   }
 }
 
 public class OutputPort extends Port{
   public OutputPort(Module parent, PVector pos){
     super(parent, pos);
+    isInput = false;
   }
 }

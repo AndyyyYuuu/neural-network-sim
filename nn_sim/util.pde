@@ -53,3 +53,25 @@ public Num sum(ArrayList<Num> nums){
   }
   return result;
 }
+
+public void flowingLine(float x1, float y1, float x2, float y2){
+  dottedLine(x1, y1, x2, y2, (((float)frameCount/20)%3)/dist(x1, y1, x2, y2)*6);
+}
+
+public void dottedLine(float x1, float y1, float x2, float y2){
+  dottedLine(x1, y1, x2, y2, 0);
+}
+
+public void dottedLine(float x1, float y1, float x2, float y2, float start){
+  float d = dist(x1, y1, x2, y2);
+  float nx = (x2-x1)/d;
+  float ny = (y2-y1)/d;
+  float at = 0;
+  boolean drawLine = true;
+  for (float i=start; i<=1; i+=20/d){
+    //if (drawLine){
+    line(x1 + nx * i * d, y1 + ny * i * d, x1 + nx * (i+10/d) * d, y1 + ny * (i+10/d) * d);
+    //}
+  }
+  
+}

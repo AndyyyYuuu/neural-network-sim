@@ -5,6 +5,7 @@ ArrayList<Module> modules = new ArrayList<Module>();
 ArrayList<Port> ports = new ArrayList<Port>();
 ArrayList<Connector> connectors = new ArrayList<Connector>();
 Module grabbedModule;
+Connector grabbedConnector;
 
 // Pretend static methods (screw Processing for not having static methods) that also serve as the buttons
 MultModule multModule = new MultModule(new PVector(30, 30));
@@ -41,14 +42,37 @@ void mousePressed(){
       if (moduleTypes[i].mouseIsIn()){
         grabbedModule = moduleTypes[i].createNew();
         grabbedModule.grab();
+        
+        return;
+      }
+    }
+    
+    for (int i=0; i<ports.size(); i++){
+      if (ports.get(i).mouseIsIn()){
+        if (grabbedConnector != null){
+          if (grabbedConnector.connect(ports.get(i))){
+            grabbedConnector = null;
+          }
+          
+          
+        }else{
+          grabbedConnector = new Connector(ports.get(i));
+          ports.get(i).occupied = true;
+          connectors.add(grabbedConnector);
+          print("!");
+          return;
+        }
       }
     }
     
     for (int i=0; i<modules.size(); i++){
       if (modules.get(i).mouseIsIn()){
         grabbedModule = modules.get(i).grab();
+        return;
       }
     }
+    
+    
   }
 }
 
@@ -71,6 +95,11 @@ void draw(){
     for (Module module: modules){
       module.show();
     }
+    
+    for (Connector connector: connectors){
+      connector.show();
+    }
+    
     if (grabbedModule != null){
       grabbedModule.show();
       grabbedModule.followMouse();
