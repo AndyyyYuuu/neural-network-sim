@@ -40,7 +40,7 @@ public abstract class BasicOpModule extends OpModule{
   }
   public void draw(){
     fill(0);
-    stroke(0, 255, 0);
+    stroke(COLOR_OP);
     strokeWeight(2);
     circle(this.pos.x, this.pos.y, 40);
     drawPorts();
@@ -57,9 +57,8 @@ public class MultModule extends BasicOpModule{
   
   public void draw(){
     super.draw();
-    fill(0, 255, 0);
+    fill(COLOR_OP);
     textSize(32);
-    textAlign(CENTER);
     textAlign(CENTER);
     text("×", this.pos.x, this.pos.y+12);
   }
@@ -90,10 +89,10 @@ public class NeuronModule extends OpModule{
   
   public void draw(){
     fill(0);
-    stroke(0, 255, 255);
+    stroke(COLOR_NEURON);
     strokeWeight(2);
     circle(this.pos.x, this.pos.y, 60);
-    fill(0, 255, 255);
+    fill(COLOR_NEURON);
     textSize(32);
     textAlign(CENTER);
     text("N", this.pos.x, this.pos.y+8);

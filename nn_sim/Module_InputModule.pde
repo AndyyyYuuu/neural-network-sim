@@ -22,11 +22,11 @@ public class ParamModule extends InputModule{
   
   public void draw(){
     fill(0);
-    stroke(255, 0, 255);
+    stroke(COLOR_OPTIM);
     strokeWeight(2);
     rect(this.pos.x-20, this.pos.y-10, 40, 20);
     drawPorts();
-    fill(255, 0, 255);
+    fill(COLOR_OPTIM);
     textAlign(LEFT);
     textSize(16);
     text(Double.toString(this.outputNum.value), this.pos.x-17, this.pos.y+5);
