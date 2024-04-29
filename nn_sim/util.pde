@@ -75,3 +75,12 @@ public void dottedLine(float x1, float y1, float x2, float y2, float start){
   }
   
 }
+
+public boolean mouseInRect(float x, float y, float w, float h){
+  return mouseX > x && mouseX < x+w && mouseY > y && mouseY < y+h;
+}
+
+// Shortened `new PVector()`
+public PVector vec(float x, float y){
+  return new PVector(x, y);
+}

@@ -9,10 +9,12 @@ Connector grabbedConnector;
 
 // Pretend static methods (screw Processing for not having static methods) that also serve as the buttons
 MultModule multModule = new MultModule(new PVector(150, 30));
-NeuronModule neuronModule = new NeuronModule(new PVector(250, 30));
+NeuronModule neuronModule = new NeuronModule(new PVector(450, 30));
+ParamModule paramModule = new ParamModule(new PVector(250, 30));
 Module[] moduleTypes = new Module[]{
   multModule, 
-  neuronModule
+  neuronModule,
+  paramModule
 };
 
 int START = 0;
@@ -28,12 +30,12 @@ void setup(){
   Num e = d.mult(c);
   Num l = e.mult(c);
   l.backward();
-  println(a);
+  /*println(a);
   println(b);
   println(c);
   println(d);
   println(e);
-  println(l);
+  println(l);*/
 }
 
 void mousePressed(){

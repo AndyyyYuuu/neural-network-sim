@@ -1,15 +1,7 @@
-
+// OpModule: includes all modules with input(s) and output(s)
 public abstract class OpModule extends Module{
+
   
-  
-  public abstract void draw();
-  public abstract boolean mouseIsIn();
-  public abstract Module createNew();
-  
-  
-  public ArrayList<InputPort> inputs = new ArrayList<InputPort>();
-  public Port output;
-  public Num outputNum;
   
   public OpModule(PVector pos){
     super(pos);
@@ -51,14 +43,7 @@ public abstract class BasicOpModule extends OpModule{
     stroke(0, 255, 0);
     strokeWeight(2);
     circle(this.pos.x, this.pos.y, 40);
-    for (int i=0; i<this.inputs.size(); i++){
-      Port aPort = this.inputs.get(i);
-      circle(aPort.getAbsX(), aPort.getAbsY(), 10);
-    }
-    pushMatrix();
-    translate(output.getAbsX(), output.getAbsY());
-    triangle(-4, 6, -4, -6, 4, 0);
-    popMatrix();
+    drawPorts();
   }
 }
 
@@ -74,6 +59,7 @@ public class MultModule extends BasicOpModule{
     super.draw();
     fill(0, 255, 0);
     textSize(32);
+    textAlign(CENTER);
     textAlign(CENTER);
     text("×", this.pos.x, this.pos.y+12);
   }
@@ -109,6 +95,7 @@ public class NeuronModule extends OpModule{
     circle(this.pos.x, this.pos.y, 60);
     fill(0, 255, 255);
     textSize(32);
+    textAlign(CENTER);
     text("N", this.pos.x, this.pos.y+8);
   }
   
