@@ -8,8 +8,8 @@ Module grabbedModule;
 Connector grabbedConnector;
 
 // Pretend static methods (screw Processing for not having static methods) that also serve as the buttons
-MultModule multModule = new MultModule(new PVector(30, 30));
-NeuronModule neuronModule = new NeuronModule(new PVector(100, 30));
+MultModule multModule = new MultModule(new PVector(150, 30));
+NeuronModule neuronModule = new NeuronModule(new PVector(250, 30));
 Module[] moduleTypes = new Module[]{
   multModule, 
   neuronModule
@@ -47,23 +47,28 @@ void mousePressed(){
       }
     }
     
+    
+    
     for (int i=0; i<ports.size(); i++){
       if (ports.get(i).mouseIsIn()){
         if (grabbedConnector != null){
           if (grabbedConnector.connect(ports.get(i))){
+            connectors.add(grabbedConnector);
             grabbedConnector = null;
+            return;
           }
-          
           
         }else{
           grabbedConnector = new Connector(ports.get(i));
           ports.get(i).occupied = true;
-          connectors.add(grabbedConnector);
+          //connectors.add(grabbedConnector);
           print("!");
           return;
         }
       }
     }
+    
+    grabbedConnector = null;
     
     for (int i=0; i<modules.size(); i++){
       if (modules.get(i).mouseIsIn()){
@@ -98,6 +103,9 @@ void draw(){
     
     for (Connector connector: connectors){
       connector.show();
+    }
+    if (grabbedConnector != null){
+      grabbedConnector.show();
     }
     
     if (grabbedModule != null){
