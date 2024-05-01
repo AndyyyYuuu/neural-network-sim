@@ -50,9 +50,7 @@ public abstract class Port{
     return this;
   }
   
-  
-  
-  
+
 }
 
 public class InputPort extends Port{

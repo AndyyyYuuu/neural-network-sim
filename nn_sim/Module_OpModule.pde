@@ -74,6 +74,33 @@ public class MultModule extends BasicOpModule{
   
 }
 
+public class AddModule extends BasicOpModule{
+  public AddModule(){
+    super();
+  }
+  public AddModule(PVector pos){
+    super(pos);
+  }
+  
+  public void draw(){
+    super.draw();
+    fill(COLOR_OP);
+    textSize(32);
+    textAlign(CENTER);
+    text("+", this.pos.x, this.pos.y+12);
+  }
+  
+  public Num forward(){
+    this.outputNum = getInput(0).add(getInput(1));
+    return this.outputNum;
+  }
+  
+  public Module createNew(){
+    return new AddModule(this.pos);
+  }
+  
+}
+
 
 public class NeuronModule extends OpModule{
   public NeuronModule(){

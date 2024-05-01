@@ -6,15 +6,19 @@ ArrayList<Port> ports = new ArrayList<Port>();
 ArrayList<Connector> connectors = new ArrayList<Connector>();
 Module grabbedModule;
 Connector grabbedConnector;
-
+Dataset circleData = new CircleDataset(80, 20);
 // Pretend static methods (screw Processing for not having static methods) that also serve as the buttons
+AddModule addModule = new AddModule(new PVector(50, 30));
 MultModule multModule = new MultModule(new PVector(150, 30));
 NeuronModule neuronModule = new NeuronModule(new PVector(450, 30));
 ParamModule paramModule = new ParamModule(new PVector(250, 30));
+DataModule dataModule = new DataModule(new PVector(550, 30));
 Module[] moduleTypes = new Module[]{
+  addModule,
   multModule, 
-  neuronModule,
-  paramModule
+  neuronModule, 
+  paramModule, 
+  dataModule
 };
 
 int START = 0;

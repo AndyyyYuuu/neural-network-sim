@@ -48,6 +48,21 @@ public class Num{
     return out; 
   }
   
+  public Num pow(double other){
+    Num out = new Num(Math.pow(this.getValue(), other),
+                      new Num[]{this},
+                      "^"+Double.toString(other));
+    Function backward = () -> {
+      this.grad += other * Math.pow(this.value, other-1) * out.grad;
+    };
+    out.setBackward(backward);
+    return out; 
+  }
+  
+  public Num div(Num other){
+    return this.mult(other.pow(-1));
+  }
+  
   public double getValue(){
     return this.value;
   }
