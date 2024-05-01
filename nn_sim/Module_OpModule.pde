@@ -31,18 +31,18 @@ public abstract class BasicOpModule extends OpModule{
   }
   public BasicOpModule(PVector pos){
     super(pos);
-    inputs.add(new InputPort(this, new PVector(-20, -10)));
-    inputs.add(new InputPort(this, new PVector(-20, 10)));
-    output = new OutputPort(this, new PVector(30, 0));
+    inputs.add(new InputPort(this, new PVector(-15, -10)));
+    inputs.add(new InputPort(this, new PVector(-15, 10)));
+    output = new OutputPort(this, new PVector(23, 0));
   }
   public boolean mouseIsIn(){
-    return dist(mouseX, mouseY, this.pos.x, this.pos.y) < 20;
+    return dist(mouseX, mouseY, this.pos.x, this.pos.y) < 15;
   }
   public void draw(){
     fill(0);
     stroke(COLOR_OP);
     strokeWeight(2);
-    circle(this.pos.x, this.pos.y, 40);
+    circle(this.pos.x, this.pos.y, 30);
     drawPorts();
   }
 }
@@ -60,7 +60,7 @@ public class MultModule extends BasicOpModule{
     fill(COLOR_OP);
     textSize(32);
     textAlign(CENTER);
-    text("×", this.pos.x, this.pos.y+12);
+    text("×", this.pos.x, this.pos.y+11);
   }
   
   public Num forward(){
@@ -87,7 +87,7 @@ public class AddModule extends BasicOpModule{
     fill(COLOR_OP);
     textSize(32);
     textAlign(CENTER);
-    text("+", this.pos.x, this.pos.y+12);
+    text("+", this.pos.x, this.pos.y+11);
   }
   
   public Num forward(){
@@ -116,10 +116,10 @@ public class NeuronModule extends OpModule{
   
   public void draw(){
     fill(0);
-    stroke(COLOR_NEURON);
+    stroke(COLOR_NEURAL);
     strokeWeight(2);
     circle(this.pos.x, this.pos.y, 60);
-    fill(COLOR_NEURON);
+    fill(COLOR_NEURAL);
     textSize(32);
     textAlign(CENTER);
     text("N", this.pos.x, this.pos.y+8);
