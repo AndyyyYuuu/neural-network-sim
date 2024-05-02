@@ -80,7 +80,30 @@ public boolean mouseInRect(float x, float y, float w, float h){
   return mouseX > x && mouseX < x+w && mouseY > y && mouseY < y+h;
 }
 
+public String processDouble(double n){
+  String result = Double.toString(Math.round(n * 1000.0)/1000.0);
+  if (n >= 0){
+    result = "+" + result;
+  }
+  if (result.length() > 6){
+    result = result.substring(0, 6);
+  }
+  return String.format("%-6s", result).replace(" ", "0");
+}
+
 // Shortened `new PVector()`
 public PVector vec(float x, float y){
   return new PVector(x, y);
+}
+
+public Num meanSquaredError(ArrayList<Num> yPred, ArrayList<Num> y){
+  if (yPred.size() != y.size()){
+    println(CATASTROPHIC_LETHAL_ERROR_MESSAGE);
+    exit();
+  }
+  Num sum = new Num(0);
+  for (int i=0; i<yPred.size(); i++){
+    sum = sum.add((yPred.get(i).sub(y.get(i))).pow(2));
+  }
+  return sum.div(new Num(yPred.size()));
 }

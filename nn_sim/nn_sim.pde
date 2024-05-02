@@ -1,5 +1,7 @@
 import java.util.*;
 
+PFont font;
+
 String CATASTROPHIC_LETHAL_ERROR_MESSAGE = "DOUBLE DOUBLE TOIL AND TROUBLE FIRE BURN AND CAULDRON BUBBLE!";
 ArrayList<Module> modules = new ArrayList<Module>();
 ArrayList<Port> ports = new ArrayList<Port>();
@@ -13,12 +15,14 @@ MultModule multModule = new MultModule(new PVector(150, 30));
 NeuronModule neuronModule = new NeuronModule(new PVector(450, 30));
 ParamModule paramModule = new ParamModule(new PVector(250, 30));
 DataModule dataModule = new DataModule(new PVector(550, 30));
+LossModule lossModule = new LossModule(new PVector(650, 30), 40);
 Module[] moduleTypes = new Module[]{
   addModule,
   multModule, 
   neuronModule, 
   paramModule, 
-  dataModule
+  dataModule,
+  lossModule
 };
 
 int START = 0;
@@ -26,7 +30,11 @@ int PLAY = 1;
 int mode = PLAY;
 
 void setup(){
-  size(800, 640);
+  size(800, 600);
+  fullScreen();
+  pixelDensity(2);
+  font = createFont("font/JetBrainsMono-VariableFont_wght.ttf", 32);
+  textFont(font);
   Num a = new Num(5);
   Num b = new Num(4);
   Num c = new Num(3);
