@@ -36,6 +36,10 @@ public class Num{
     return out; 
   }
   
+  public Num sub(Num other){
+    return this.add(other.mult(new Num(-1)));
+  }
+  
   public Num mult(Num other){
     Num out = new Num(this.getValue() * other.getValue(),
                       new Num[]{this, other},

@@ -34,6 +34,7 @@ public class NumModule extends InputModule{
     textAlign(LEFT);
     textSize(11);
     text(processDouble(this.outputNum.value), this.pos.x-20, this.pos.y+4);
+    
   }
   
   public boolean mouseIsIn(){

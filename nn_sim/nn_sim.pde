@@ -16,13 +16,15 @@ NeuronModule neuronModule = new NeuronModule(new PVector(450, 30));
 ParamModule paramModule = new ParamModule(new PVector(250, 30));
 DataModule dataModule = new DataModule(new PVector(550, 30));
 LossModule lossModule = new LossModule(new PVector(650, 30), 40);
+OptimModule optimModule = new OptimModule(new PVector(750, 30));
 Module[] moduleTypes = new Module[]{
   addModule,
   multModule, 
   neuronModule, 
   paramModule, 
   dataModule,
-  lossModule
+  lossModule,
+  optimModule
 };
 
 int START = 0;
