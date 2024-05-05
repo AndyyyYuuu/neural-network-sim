@@ -37,10 +37,12 @@ public abstract class Module{
       Port aPort = this.inputs.get(i);
       circle(aPort.getAbsX(), aPort.getAbsY(), 10);
     }
-    pushMatrix();
-    translate(output.getAbsX(), output.getAbsY());
-    triangle(-4, 6, -4, -6, 4, 0);
-    popMatrix();
+    if (output != null){
+      pushMatrix();
+      translate(output.getAbsX(), output.getAbsY());
+      triangle(-4, 6, -4, -6, 4, 0);
+      popMatrix();
+    }
     
   }
 }
