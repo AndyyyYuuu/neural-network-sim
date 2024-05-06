@@ -82,6 +82,7 @@ public class ParamModule extends NumModule{
 public class DataModule extends InputModule{
   Dataset data;
   PVector x1Pos, x2Pos, yPos;
+  
   NumModule x1, x2, y;
   public DataModule(PVector pos){
     super(pos);
@@ -128,6 +129,7 @@ public class DataModule extends InputModule{
   }
   
   public Num forward(){
+    
     return new Num(1);
   }
   

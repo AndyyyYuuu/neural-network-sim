@@ -1,8 +1,6 @@
-// Autograd algorithm from: Andrej Karpathy
+// Autograd algorithm (Python) originally by: Andrej Karpathy
+// Translated to Java Processing by: me
 
-interface Function{
-  public void run();
-}
 
 public class Num{
   private double value;

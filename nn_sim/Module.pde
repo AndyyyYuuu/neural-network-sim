@@ -15,9 +15,31 @@ public abstract class Module{
   public Module(){
   }
   
+  public Num getInput(int idx){
+    return this.inputs.get(idx).getOtherEnd().parent.forward();
+  }
+  
+  
+  
   public Module(PVector pos){
     this.pos = pos;
     
+  }
+  
+  public Num attemptForward(){
+    if (!hasAllInputs()){
+      return null;
+    }
+    return forward();
+  }
+  
+  public boolean hasAllInputs(){
+    for (InputPort p: inputs){
+      if (p.getOtherEnd() == null){
+        return false;
+      }
+    }
+    return true;
   }
   
   public void show(){

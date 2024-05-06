@@ -22,6 +22,9 @@ public abstract class Port{
   }
   
   public Port getOtherEnd(){
+    if (this.getOtherEnds().size() == 0){
+      return null;
+    }
     return this.getOtherEnds().get(0);
   }
   

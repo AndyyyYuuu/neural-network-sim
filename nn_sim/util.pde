@@ -1,4 +1,8 @@
 
+interface Function{
+  public void run();
+}
+
 public String numArrToStr(Num[] arr){
   String result = "[ ";
   for (int i=0; i<arr.length; i++){

@@ -52,6 +52,16 @@ void setup(){
   println(l);*/
 }
 
+void keyPressed(){
+  if (key == 'l'){
+    for (Module m: modules){
+      if (m instanceof LossModule){
+        println(m.attemptForward());
+      }
+    }
+  }
+}
+
 void mousePressed(){
   if (mode == PLAY){
     for (int i=0; i<moduleTypes.length; i++){

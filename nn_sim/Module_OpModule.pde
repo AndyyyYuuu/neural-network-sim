@@ -11,9 +11,7 @@ public abstract class OpModule extends Module{
   public OpModule(){
   }
   
-  public Num getInput(int idx){
-    return this.inputs.get(idx).getOtherEnd().parent.forward();
-  }
+  
   
   public ArrayList<Num> getInputs(){
     ArrayList<Num> results = new ArrayList<Num>();
