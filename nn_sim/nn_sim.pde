@@ -56,7 +56,7 @@ void keyPressed(){
   if (key == 'l'){
     for (Module m: modules){
       if (m instanceof LossModule){
-        println(m.attemptForward());
+        println(m.forward());
       }
     }
   }

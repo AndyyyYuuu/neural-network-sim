@@ -29,6 +29,11 @@ public abstract class Dataset{
     validIdx = (int)random(0, validSize);
   }
   
+  public void next(){
+    trainIdx = (trainIdx + 1)%trainSize;
+    validIdx = (validIdx + 1)%validSize;
+  }
+  
   public DataPair getTrain(){
     return train.get(trainIdx);
   }

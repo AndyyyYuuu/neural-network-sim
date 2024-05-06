@@ -1,6 +1,6 @@
 
 public abstract class Module{
-  public abstract Num forward();
+  public abstract Num _forward();
   public PVector pos, mousePos;
   public abstract void draw();
   public abstract boolean mouseIsIn();
@@ -17,6 +17,7 @@ public abstract class Module{
   
   public Num getInput(int idx){
     return this.inputs.get(idx).getOtherEnd().parent.forward();
+    
   }
   
   
@@ -26,11 +27,11 @@ public abstract class Module{
     
   }
   
-  public Num attemptForward(){
+  public Num forward(){
     if (!hasAllInputs()){
       return null;
     }
-    return forward();
+    return _forward();
   }
   
   public boolean hasAllInputs(){

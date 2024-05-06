@@ -61,7 +61,7 @@ public class MultModule extends BasicOpModule{
     text("×", this.pos.x, this.pos.y+11);
   }
   
-  public Num forward(){
+  public Num _forward(){
     this.outputNum = getInput(0).mult(getInput(1));
     return this.outputNum;
   }
@@ -88,7 +88,7 @@ public class AddModule extends BasicOpModule{
     text("+", this.pos.x, this.pos.y+11);
   }
   
-  public Num forward(){
+  public Num _forward(){
     this.outputNum = getInput(0).add(getInput(1));
     return this.outputNum;
   }
@@ -123,7 +123,7 @@ public class NeuronModule extends OpModule{
     text("N", this.pos.x, this.pos.y+8);
   }
   
-  public Num forward(){
+  public Num _forward(){
     this.outputNum = sum(getInputs());
     return this.outputNum;
   }

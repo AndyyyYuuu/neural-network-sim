@@ -1,8 +1,9 @@
 
 public class OptimModule extends Module{
+  public Num inputLoss = null;
   public OptimModule(PVector pos){
     super(pos);
-    inputs.add(new InputPort(this, new PVector(-50, 0)));
+    inputs.add(new InputPort(this, new PVector(-50, -45)));
   }
   
   public void setNum(double num){
@@ -18,7 +19,14 @@ public class OptimModule extends Module{
     fill(COLOR_OPTIM);
     textAlign(LEFT);
     textSize(12);
-    text("ℓ", this.pos.x-40, this.pos.y+4);
+    String lossText;
+    forward();
+    if (this.hasAllInputs() && inputLoss != null){
+      lossText = "ℓ = "+processDouble(inputLoss.value, 8, false);
+    }else{
+      lossText = "ℓ = ???";
+    }
+    text(lossText, this.pos.x-40, this.pos.y-41);
     
   }
   
@@ -26,7 +34,8 @@ public class OptimModule extends Module{
     return mouseInRect(this.pos.x-50, this.pos.y-60, 100, 120);
   }
   
-  public Num forward(){
+  public Num _forward(){
+    inputLoss = this.getInput(0);
     return this.outputNum;
   }
   

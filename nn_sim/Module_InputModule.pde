@@ -41,12 +41,34 @@ public class NumModule extends InputModule{
     return mouseInRect(this.pos.x-22, this.pos.y-8, 44, 16);
   }
   
-  public Num forward(){
+  public Num _forward(){
     return this.outputNum;
   }
   
   public Module createNew(){
     return new NumModule(this.pos);
+  }
+  
+}
+
+public class DataValueModule extends NumModule{
+  public DataModule dataModule;
+  public DataValueModule(PVector pos, DataModule dataModule){
+    super(pos);
+    this.dataModule = dataModule;
+  }
+  
+  public boolean mouseIsIn(){
+    return mouseInRect(this.pos.x-22, this.pos.y-8, 44, 16);
+  }
+  
+  public Num _forward(){
+    this.dataModule.next();
+    return this.outputNum;
+  }
+  
+  public Module createNew(){
+    return new DataValueModule(this.pos, this.dataModule);
   }
   
 }
@@ -83,24 +105,20 @@ public class DataModule extends InputModule{
   Dataset data;
   PVector x1Pos, x2Pos, yPos;
   
-  NumModule x1, x2, y;
+  DataValueModule x1, x2, y;
   public DataModule(PVector pos){
     super(pos);
     data = circleData;
     x1Pos = new PVector(8, 35);
     x2Pos = new PVector(8, 10);
     yPos = new PVector(8, -35);
-    x1 = new NumModule(pos);
-    x2 = new NumModule(pos);
-    y = new NumModule(pos);
+    x1 = new DataValueModule(pos, this);
+    x2 = new DataValueModule(pos, this);
+    y = new DataValueModule(pos, this);
     updatePositions();
     x1.setNum(data.getTrain().inputs[0]);
     x2.setNum(data.getTrain().inputs[1]);
     y.setNum(data.getTrain().output);
-  }
-  
-  public DataModule(){
-    super();
   }
   
   public void draw(){
@@ -128,7 +146,14 @@ public class DataModule extends InputModule{
     return mouseInRect(this.pos.x-20, this.pos.y-50, 40, 100);
   }
   
-  public Num forward(){
+  public void next(){
+    this.data.next();
+    x1.setNum(data.getTrain().inputs[0]);
+    x2.setNum(data.getTrain().inputs[1]);
+    y.setNum(data.getTrain().output);
+  }
+  
+  public Num _forward(){
     
     return new Num(1);
   }

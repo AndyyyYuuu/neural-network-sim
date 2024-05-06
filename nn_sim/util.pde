@@ -85,14 +85,18 @@ public boolean mouseInRect(float x, float y, float w, float h){
 }
 
 public String processDouble(double n){
-  String result = Double.toString(Math.round(n * 1000.0)/1000.0);
+  return processDouble(n, 6, true);
+}
+
+public String processDouble(double n, int chars, boolean alwaysShowSign){
+  String result = Double.toString(Math.round(n * Math.pow(10, chars-2))/Math.pow(10, chars-2));
   if (n >= 0){
-    result = "+" + result;
+    result = (alwaysShowSign?"+":"") + result;
   }
   if (result.length() > 6){
     result = result.substring(0, 6);
   }
-  return String.format("%-6s", result).replace(" ", "0");
+  return String.format("%-"+chars+"s", result).replace(" ", "0");
 }
 
 // Shortened `new PVector()`

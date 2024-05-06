@@ -34,7 +34,7 @@ public class LossModule extends OpModule{
     text("ŷ", this.pos.x-37, this.pos.y-3);
     text("y", this.pos.x-30, this.pos.y-15);
     if (inputY.size() > 0){
-      rect(this.pos.x-37, this.pos.y+15, 54*((float)inputY.size()/this.batchSize), 4);
+      rect(this.pos.x-37, this.pos.y+15, 54*((float)inputY.size()/(float)this.batchSize), 4);
     }
     fill(0);
     drawPorts();
@@ -44,10 +44,12 @@ public class LossModule extends OpModule{
     return mouseInRect(this.pos.x-40, this.pos.y-30, 80, 60);
   }
   
-  public Num forward(){
-    inputY.add(getInput(0));
-    inputYPred.add(getInput(1));
-    this.outputNum = meanSquaredError(inputYPred, inputY);
+  public Num _forward(){
+    if (inputY.size() < this.batchSize){
+      inputY.add(getInput(0));
+      inputYPred.add(getInput(1));
+      this.outputNum = meanSquaredError(inputYPred, inputY);
+    }
     return this.outputNum;
   }
   
