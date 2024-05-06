@@ -6,7 +6,7 @@ public abstract class Module{
   public abstract boolean mouseIsIn();
   public abstract Module createNew();
   
-  
+  public ArrayList<Button> buttons = new ArrayList<Button>();
   public ArrayList<InputPort> inputs = new ArrayList<InputPort>();
   public OutputPort output;
   
@@ -55,7 +55,7 @@ public abstract class Module{
   public void followMouse(){
     this.pos = new PVector(mouseX, mouseY).sub(this.mousePos);
   }
-  public void drawPorts(){
+  public void drawAttachments(){
     for (int i=0; i<this.inputs.size(); i++){
       Port aPort = this.inputs.get(i);
       circle(aPort.getAbsX(), aPort.getAbsY(), 10);
@@ -67,5 +67,9 @@ public abstract class Module{
       popMatrix();
     }
     
+    for (Button b: this.buttons){
+      b.draw(COLOR_NEURAL);
+    }
   }
+  
 }

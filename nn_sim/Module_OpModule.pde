@@ -41,7 +41,7 @@ public abstract class BasicOpModule extends OpModule{
     stroke(COLOR_OP);
     strokeWeight(2);
     circle(this.pos.x, this.pos.y, 30);
-    drawPorts();
+    drawAttachments();
   }
 }
 

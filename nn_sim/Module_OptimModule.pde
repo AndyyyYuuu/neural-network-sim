@@ -15,7 +15,7 @@ public class OptimModule extends Module{
     stroke(COLOR_OPTIM);
     strokeWeight(2);
     rect(this.pos.x-50, this.pos.y-60, 100, 120);
-    drawPorts();
+    drawAttachments();
     fill(COLOR_OPTIM);
     textAlign(LEFT);
     textSize(12);

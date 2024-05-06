@@ -6,6 +6,7 @@ String CATASTROPHIC_LETHAL_ERROR_MESSAGE = "DOUBLE DOUBLE TOIL AND TROUBLE FIRE 
 ArrayList<Module> modules = new ArrayList<Module>();
 ArrayList<Port> ports = new ArrayList<Port>();
 ArrayList<Connector> connectors = new ArrayList<Connector>();
+ArrayList<Button> buttons = new ArrayList<Button>();
 Module grabbedModule;
 Connector grabbedConnector;
 Dataset circleData = new CircleDataset(80, 20);
@@ -69,6 +70,12 @@ void mousePressed(){
         grabbedModule = moduleTypes[i].createNew();
         grabbedModule.grab();
         
+        return;
+      }
+    }
+    
+    for (Button b: buttons){
+      if (b.mouseDown()){
         return;
       }
     }
@@ -137,6 +144,10 @@ void draw(){
     if (grabbedModule != null){
       grabbedModule.show();
       grabbedModule.followMouse();
+    }
+    
+    for (Button b: buttons){
+      b.tick();
     }
   }
 }
