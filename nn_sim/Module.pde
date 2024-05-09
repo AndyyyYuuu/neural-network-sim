@@ -31,12 +31,13 @@ public abstract class Module{
     if (!hasAllInputs()){
       return null;
     }
+    
     return _forward();
   }
   
   public boolean hasAllInputs(){
     for (InputPort p: inputs){
-      if (p.getOtherEnd() == null){
+      if (p.getOtherEnd() == null || p.getOtherEnd().parent.outputNum == null){
         return false;
       }
     }
