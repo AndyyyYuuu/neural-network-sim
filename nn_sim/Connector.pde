@@ -19,12 +19,12 @@ class Connector{
   public boolean connect(Port otherPort){
     if (this.port1.isInput != otherPort.isInput && this.port1.parent != otherPort.parent){
       this.port2 = otherPort;
-      this.port2.connect(this);
       if (this.port2 instanceof OutputPort){
         Port temp = this.port1;
         this.port1 = this.port2;
         this.port2 = temp;
       }
+      this.port2.connect(this);
       return true;
     }else{
       return false;
