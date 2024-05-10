@@ -8,10 +8,10 @@ public class OptimModule extends Module{
     buttons.add(new Button(new PVector(5, 0), new PVector(20, 20), ICON_DESCEND, this));
     buttons.add(new Button(new PVector(5, 30), new PVector(20, 20), ICON_ZERO, this));
   }
-  
+  /*
   public void setNum(double num){
     this.outputNum = new Num(num);
-  }
+  }*/
   
   public void draw(){
     fill(0);
