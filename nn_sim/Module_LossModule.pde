@@ -5,13 +5,17 @@ public class LossModule extends OpModule{
   public ArrayList<Num> inputY = new ArrayList<Num>();
   public String funcName;
   public int batchSize;
+  public boolean calculatingAll = false;
   
   public LossModule(PVector pos, int batchSize){
     super(pos);
     this.batchSize = batchSize;
     inputs.add(new InputPort(this, new PVector(-30, -30)));
     inputs.add(new InputPort(this, new PVector(-45, -5)));
+    
+    buttons.add(new Button(new PVector(-5, -25), new PVector(20, 20), ICON_FORWARD, this));
     buttons.add(new Button(new PVector(20, -25), new PVector(20, 20), ICON_REFRESH, this));
+    
     output = new OutputPort(this, new PVector(55, 5));
     funcName = "μ²";
   }
@@ -47,18 +51,35 @@ public class LossModule extends OpModule{
   }
   
   public Num _forward(){
+    
     if (inputY.size() < this.batchSize){
-      inputY.add(getInput(0));
-      inputYPred.add(getInput(1));
-      this.outputNum = meanSquaredError(inputYPred, inputY);
-    } else {
       if (buttons.get(0).isOn()){
+        calculateLoss();
         buttons.get(0).turnOff();
+      }
+      if (calculatingAll){
+        calculateLoss();
+      }
+    } else {
+      calculatingAll = false;
+    }
+    
+    if (buttons.get(1).isOn() && !calculatingAll){
+      buttons.get(1).turnOff();
+      calculatingAll = true;
+      if (inputY.size() >= this.batchSize){
         inputYPred.clear();
         inputY.clear();
       }
-    }
+    } 
+    
     return this.outputNum;
+  }
+  
+  private void calculateLoss(){
+    inputY.add(getInput(0));
+    inputYPred.add(getInput(1));
+    this.outputNum = meanSquaredError(inputYPred, inputY);
   }
   
   public Module createNew(){

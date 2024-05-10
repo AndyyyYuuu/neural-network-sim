@@ -1,3 +1,4 @@
+Icon ICON_FORWARD = new Icon("icon/forward.png");
 Icon ICON_REFRESH = new Icon("icon/refresh.png");
 Icon ICON_DESCEND = new Icon("icon/descend.png");
 Icon ICON_CALCULATE = new Icon("icon/calculate.png");
