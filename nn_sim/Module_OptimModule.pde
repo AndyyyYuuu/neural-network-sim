@@ -6,6 +6,7 @@ public class OptimModule extends Module{
     inputs.add(new InputPort(this, new PVector(-50, -45)));
     buttons.add(new Button(new PVector(-25, 0), new PVector(20, 20), ICON_BACKWARD, this));
     buttons.add(new Button(new PVector(5, 0), new PVector(20, 20), ICON_DESCEND, this));
+    buttons.add(new Button(new PVector(5, 30), new PVector(20, 20), ICON_ZERO, this));
   }
   
   public void setNum(double num){
@@ -40,6 +41,12 @@ public class OptimModule extends Module{
     if (buttons.get(1).isOn()){
       buttons.get(1).turnOff();
       inputLoss.descend();
+      
+    }
+    
+    if (buttons.get(2).isOn()){
+      buttons.get(2).turnOff();
+      inputLoss.zeroGrad();
       
     }
   }
