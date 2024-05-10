@@ -13,6 +13,7 @@ Dataset circleData = new CircleDataset(80, 20);
 // Pretend static methods (screw Processing for not having static methods) that also serve as the buttons
 AddModule addModule;
 MultModule multModule;
+TanhModule tanhModule;
 NeuronModule neuronModule;
 ParamModule paramModule;
 DataModule dataModule;
@@ -33,16 +34,18 @@ void setup(){
   circleData = new CircleDataset(80, 20);
   
   // Pretend static methods (screw Processing for not having static methods) that also serve as the buttons
-  addModule = new AddModule(new PVector(50, 30));
-  multModule = new MultModule(new PVector(150, 30));
-  neuronModule = new NeuronModule(new PVector(450, 30));
+  addModule = new AddModule(new PVector(60, 30));
+  multModule = new MultModule(new PVector(120, 30));
+  tanhModule = new TanhModule(new PVector(180, 30));
   paramModule = new ParamModule(new PVector(250, 30));
+  neuronModule = new NeuronModule(new PVector(450, 30));
   dataModule = new DataModule(new PVector(550, 30));
   lossModule = new LossModule(new PVector(650, 30), 40);
   optimModule = new OptimModule(new PVector(750, 30));
   moduleTypes = new Module[]{
     addModule,
     multModule, 
+    tanhModule,
     neuronModule, 
     paramModule, 
     dataModule,

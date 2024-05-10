@@ -1,17 +1,10 @@
 // OpModule: includes all modules with input(s) and output(s)
 public abstract class OpModule extends Module{
-
-  
   
   public OpModule(PVector pos){
     super(pos);
     
   }
-  
-  public OpModule(){
-  }
-  
-  
   
   public ArrayList<Num> getInputs(){
     ArrayList<Num> results = new ArrayList<Num>();
@@ -24,18 +17,11 @@ public abstract class OpModule extends Module{
 
 public abstract class BasicOpModule extends OpModule{
   public abstract Module createNew();
-  public BasicOpModule(){
-    super();
-  }
   public BasicOpModule(PVector pos){
     super(pos);
-    inputs.add(new InputPort(this, new PVector(-15, -10)));
-    inputs.add(new InputPort(this, new PVector(-15, 10)));
     output = new OutputPort(this, new PVector(23, 0));
   }
-  public boolean mouseIsIn(){
-    return dist(mouseX, mouseY, this.pos.x, this.pos.y) < 15;
-  }
+  
   public void draw(){
     fill(0);
     stroke(COLOR_OP);
@@ -43,12 +29,23 @@ public abstract class BasicOpModule extends OpModule{
     circle(this.pos.x, this.pos.y, 30);
     drawAttachments(COLOR_OPTIM);
   }
+  public boolean mouseIsIn(){
+    return dist(mouseX, mouseY, this.pos.x, this.pos.y) < 15;
+  }
 }
 
-public class MultModule extends BasicOpModule{
-  public MultModule(){
-    super();
+public abstract class BinaryOpModule extends BasicOpModule{
+  public abstract Module createNew();
+  
+  public BinaryOpModule(PVector pos){
+    super(pos);
+    inputs.add(new InputPort(this, new PVector(-15, -10)));
+    inputs.add(new InputPort(this, new PVector(-15, 10)));
   }
+}
+
+public class MultModule extends BinaryOpModule{
+
   public MultModule(PVector pos){
     super(pos);
   }
@@ -72,10 +69,7 @@ public class MultModule extends BasicOpModule{
   
 }
 
-public class AddModule extends BasicOpModule{
-  public AddModule(){
-    super();
-  }
+public class AddModule extends BinaryOpModule{
   public AddModule(PVector pos){
     super(pos);
   }
@@ -99,11 +93,44 @@ public class AddModule extends BasicOpModule{
   
 }
 
+public abstract class UnaryOpModule extends BasicOpModule{
+  //public abstract Module createNew();
+
+  public UnaryOpModule(PVector pos){
+    super(pos);
+    inputs.add(new InputPort(this, new PVector(-15, 0)));
+  }
+}
+
+public class TanhModule extends UnaryOpModule{
+  
+  public TanhModule(PVector pos){
+    super(pos);
+  }
+  
+  public void draw(){
+    super.draw();
+    fill(COLOR_OP);
+    textSize(9);
+    textAlign(CENTER);
+    text("tanh", this.pos.x+2, this.pos.y+3);
+  }
+  
+  public Num _forward(){
+    this.outputNum = getInput(0).tanh();
+    return this.outputNum;
+  }
+  
+  
+  
+  public Module createNew(){
+    return new TanhModule(this.pos);
+  }
+}
+
 
 public class NeuronModule extends OpModule{
-  public NeuronModule(){
-    super();
-  }
+
   public NeuronModule(PVector pos){
     super(pos);
   }

@@ -65,6 +65,15 @@ public class Num{
     return this.mult(other.pow(-1));
   }
   
+  public Num tanh(){
+    Num out = new Num(Math.tanh(this.getValue()), new Num[]{this}, "tanh");
+    Function backward = () -> {
+      this.grad += (1 - Math.pow(out.getValue(), 2.0)) * out.grad;
+    };
+    out.setBackward(backward);
+    return out; 
+  }
+  
   public double getValue(){
     return this.value;
   }
