@@ -56,7 +56,8 @@ public abstract class Module{
   public void followMouse(){
     this.pos = new PVector(mouseX, mouseY).sub(this.mousePos);
   }
-  public void drawAttachments(){
+  public void drawAttachments(color c){
+    fill(0);
     for (int i=0; i<this.inputs.size(); i++){
       Port aPort = this.inputs.get(i);
       circle(aPort.getAbsX(), aPort.getAbsY(), 10);
@@ -69,7 +70,7 @@ public abstract class Module{
     }
     
     for (Button b: this.buttons){
-      b.draw(COLOR_NEURAL);
+      b.draw(c);
     }
   }
   

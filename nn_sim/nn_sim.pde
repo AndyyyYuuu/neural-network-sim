@@ -30,7 +30,6 @@ void setup(){
   pixelDensity(2);
   font = createFont("font/JetBrainsMono-VariableFont_wght.ttf", 32);
   textFont(font);
-  ICON_REFRESH.load();
   circleData = new CircleDataset(80, 20);
   
   // Pretend static methods (screw Processing for not having static methods) that also serve as the buttons

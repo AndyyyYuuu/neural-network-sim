@@ -67,13 +67,13 @@ public class Button{
       if (mouseIn()){
         icon.draw(pos.x+size.x/2, pos.y+size.y/2, color(0));
       }else{
-        icon.draw(pos.x+size.x/2, pos.y+size.y/2, COLOR_NEURAL);
+        icon.draw(pos.x+size.x/2, pos.y+size.y/2, c);
       }
     } else if (txt != null){
       if (mouseIn()){
         fill(0);
       }else{
-        fill(COLOR_NEURAL);
+        fill(c);
       }
       text(txt, 0, 0);
     }

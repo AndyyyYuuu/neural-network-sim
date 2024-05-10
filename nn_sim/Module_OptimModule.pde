@@ -4,6 +4,8 @@ public class OptimModule extends Module{
   public OptimModule(PVector pos){
     super(pos);
     inputs.add(new InputPort(this, new PVector(-50, -45)));
+    buttons.add(new Button(new PVector(-25, 0), new PVector(20, 20), ICON_BACKWARD, this));
+    buttons.add(new Button(new PVector(5, 0), new PVector(20, 20), ICON_DESCEND, this));
   }
   
   public void setNum(double num){
@@ -15,7 +17,7 @@ public class OptimModule extends Module{
     stroke(COLOR_OPTIM);
     strokeWeight(2);
     rect(this.pos.x-50, this.pos.y-60, 100, 120);
-    drawAttachments();
+    drawAttachments(COLOR_OPTIM);
     fill(COLOR_OPTIM);
     textAlign(LEFT);
     textSize(12);
@@ -27,7 +29,19 @@ public class OptimModule extends Module{
       lossText = "ℓ = ???";
     }
     text(lossText, this.pos.x-40, this.pos.y-41);
+    drawAttachments(COLOR_OPTIM);
+    if (buttons.get(0).isOn()){
+      buttons.get(0).turnOff();
+      inputLoss.zeroGrad();
+      inputLoss.backward();
+      
+    }
     
+    if (buttons.get(1).isOn()){
+      buttons.get(1).turnOff();
+      inputLoss.descend();
+      
+    }
   }
   
   public boolean mouseIsIn(){

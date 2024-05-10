@@ -29,7 +29,7 @@ public class NumModule extends InputModule{
     stroke(COLOR_DATA);
     strokeWeight(2);
     rect(this.pos.x-22, this.pos.y-8, 44, 16);
-    drawAttachments();
+    drawAttachments(COLOR_DATA);
     fill(COLOR_DATA);
     textAlign(LEFT);
     textSize(11);
@@ -86,11 +86,13 @@ public class ParamModule extends NumModule{
     stroke(COLOR_OPTIM);
     strokeWeight(2);
     rect(this.pos.x-22, this.pos.y-8, 44, 16);
-    drawAttachments();
+    drawAttachments(COLOR_DATA);
     fill(COLOR_OPTIM);
     textAlign(LEFT);
     textSize(11);
     text(processDouble(this.outputNum.value), this.pos.x-20, this.pos.y+4);
+    textSize(8);
+    text(processDouble(this.outputNum.grad), this.pos.x-20, this.pos.y+18);
   }
   
   public Module createNew(){

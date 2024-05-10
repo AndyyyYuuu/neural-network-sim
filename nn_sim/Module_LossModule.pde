@@ -11,8 +11,8 @@ public class LossModule extends OpModule{
     this.batchSize = batchSize;
     inputs.add(new InputPort(this, new PVector(-30, -30)));
     inputs.add(new InputPort(this, new PVector(-45, -5)));
-    buttons.add(new Button(new PVector(-5, -9), new PVector(40, 18), ICON_REFRESH, this));
-    output = new OutputPort(this, new PVector(55, 0));
+    buttons.add(new Button(new PVector(20, -25), new PVector(20, 20), ICON_REFRESH, this));
+    output = new OutputPort(this, new PVector(55, 5));
     funcName = "μ²";
   }
   
@@ -26,7 +26,7 @@ public class LossModule extends OpModule{
     fill(COLOR_NEURAL);
     textAlign(LEFT);
     textSize(11);
-    text("ℓ(ŷ,y)=", pos.x-5, pos.y-17);
+    text("ℓ(ŷ,y)=", pos.x-5, pos.y+8);
     /*textSize(14);
     textAlign(CENTER);
     text(funcName, this.pos.x+15, this.pos.y);*/
@@ -39,7 +39,7 @@ public class LossModule extends OpModule{
       
     }
     fill(0);
-    drawAttachments();
+    drawAttachments(COLOR_NEURAL);
   }
   
   public boolean mouseIsIn(){
