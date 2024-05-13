@@ -19,6 +19,7 @@ ParamModule paramModule;
 DataModule dataModule;
 LossModule lossModule;
 OptimModule optimModule;
+ReaderModule readerModule;
 Module[] moduleTypes;
 
 int START = 0;
@@ -42,6 +43,7 @@ void setup(){
   dataModule = new DataModule(new PVector(550, 30));
   lossModule = new LossModule(new PVector(650, 30), 40);
   optimModule = new OptimModule(new PVector(750, 30));
+  readerModule = new ReaderModule(new PVector(850, 30));
   moduleTypes = new Module[]{
     addModule,
     multModule, 
@@ -50,7 +52,8 @@ void setup(){
     paramModule, 
     dataModule,
     lossModule,
-    optimModule
+    optimModule,
+    readerModule
   };
   Num a = new Num(5);
   Num b = new Num(4);

@@ -7,7 +7,11 @@ class Connector{
   }
   
   public void show(){
+    
     stroke(255);
+    if (port2 != null && port2.parent instanceof ReaderModule){
+      stroke(255/2);
+    }
     strokeWeight(3);
     if (this.port2 == null){
       dottedLine(port1.getAbsX(), port1.getAbsY(), mouseX, mouseY);
