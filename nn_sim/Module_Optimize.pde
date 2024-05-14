@@ -33,9 +33,10 @@ public class OptimModule extends Module{
     drawAttachments(COLOR_OPTIM);
     if (buttons.get(0).isOn()){
       buttons.get(0).turnOff();
-      inputLoss.zeroGrad();
-      inputLoss.backward();
-      
+      if (this.hasAllInputs()){
+        inputLoss.zeroGrad();
+        inputLoss.backward();
+      }
     }
     
     if (buttons.get(1).isOn()){

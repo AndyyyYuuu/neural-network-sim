@@ -14,7 +14,7 @@ class Connector{
     }
     strokeWeight(3);
     if (this.port2 == null){
-      dottedLine(port1.getAbsX(), port1.getAbsY(), mouseX, mouseY);
+      dottedLine(mouseX, mouseY, port1.getAbsX(), port1.getAbsY());
     }else{
       flowingLine(port1.getAbsX(), port1.getAbsY(), port2.getAbsX(), port2.getAbsY());
     }
