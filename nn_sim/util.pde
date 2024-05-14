@@ -59,7 +59,8 @@ public Num sum(ArrayList<Num> nums){
 }
 
 public void flowingLine(float x1, float y1, float x2, float y2){
-  dottedLine(x1, y1, x2, y2, (((float)frameCount/20)%3)/dist(x1, y1, x2, y2)*6);
+  float speed = 3; // Lower number --> more speed
+  dottedLine(x1, y1, x2, y2, (((float)frameCount/20)%speed)/dist(x1, y1, x2, y2)*20/speed);
 }
 
 public void dottedLine(float x1, float y1, float x2, float y2){
@@ -67,17 +68,29 @@ public void dottedLine(float x1, float y1, float x2, float y2){
 }
 
 public void dottedLine(float x1, float y1, float x2, float y2, float start){
+  float dotLength = 10;
   float d = dist(x1, y1, x2, y2);
-  float nx = (x2-x1)/d;
-  float ny = (y2-y1)/d;
+  float unitx = (x2-x1)/d;
+  float unity = (y2-y1)/d;
   float at = 0;
   boolean drawLine = true;
-  for (float i=start; i<=1; i+=20/d){
-    //if (drawLine){
-    line(x1 + nx * i * d, y1 + ny * i * d, x1 + nx * (i+10/d) * d, y1 + ny * (i+10/d) * d);
-    //}
+  if (start-dotLength/d > 0){
+    line(x1, y1, x1 + unitx*(start-dotLength/d)*d, y1 + unity*(start-dotLength/d)*d);
   }
   
+  for (float i=start; i<=1; i+=dotLength/d){
+    println(i, drawLine);
+    if (drawLine){
+      float x = x1 + unitx*i*d;
+      float y = y1 + unity*i*d;
+      if ((x1 < x2 && x+dotLength*unitx >= x2) || (x1 > x2 && x+dotLength*unitx <= x2)){
+        line(x, y, x2, y2);
+      }else{
+        line(x, y, x+dotLength*unitx, y + dotLength*unity);
+      }
+    }
+    drawLine = !drawLine;
+  }
 }
 
 public boolean mouseInRect(float x, float y, float w, float h){
