@@ -7,9 +7,11 @@ public class Num{
   private double grad = 0;
   private String operator;
   private Num[] children = new Num[0];
+  public boolean isParam = false;
   public Function backward = () -> {
     ;
   }; 
+  
   public Num(double value, Num[] children, String operator){
     this(value);
     this.children = children; 
@@ -19,6 +21,10 @@ public class Num{
   public Num(double value){
     this.value = value; 
     
+  }
+  
+  public void makeParam(){
+    this.isParam = true;
   }
   
   public Num add(Num other){
@@ -78,6 +84,10 @@ public class Num{
     return this.value;
   }
   
+  public void setValue(double v){
+    this.value = v;
+  }
+  
   public void setBackward(Function backward){
     this.backward = backward; 
   }
@@ -91,13 +101,15 @@ public class Num{
   }
 
   public void _descend(double stepSize){
-    this.value -= stepSize * this.grad;
+    if (this.isParam){
+      this.value -= stepSize * this.grad;
+    }
   }
   
   public void descend(){
     
     for (Num node: (topologicalSort(this))){
-      node._descend(0.001);
+      node._descend(0.005);
     }
     
   }

@@ -22,6 +22,8 @@ public class NumModule extends InputModule{
   
   public void setNum(double num){
     this.outputNum = new Num(num);
+    
+    
   }
   
   public void draw(){
@@ -76,9 +78,7 @@ public class DataValueModule extends NumModule{
 public class ParamModule extends NumModule{
   public ParamModule(PVector pos){
     super(pos);
-  }
-  
-  public ParamModule(){
+    this.outputNum.makeParam();
   }
   
   public void draw(){
@@ -97,6 +97,7 @@ public class ParamModule extends NumModule{
   
   public Module createNew(){
     return new ParamModule(this.pos);
+    
   }
   
 }
