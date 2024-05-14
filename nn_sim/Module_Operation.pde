@@ -130,28 +130,42 @@ public class TanhModule extends UnaryOpModule{
 
 
 public class NeuronModule extends OpModule{
-
+  public ArrayList<Num> weights = new ArrayList<Num>();
+  public Num bias = new Num(0);
   public NeuronModule(PVector pos){
     super(pos);
+    inputs.add(new InputPort(this, new PVector(-25, 0)));
+    output = new OutputPort(this, new PVector(35, 0));
+    bias.makeParam();
   }
   
   public boolean mouseIsIn(){
-    return dist(mouseX, mouseY, this.pos.x, this.pos.y) < 30;
+    return dist(mouseX, mouseY, this.pos.x, this.pos.y) < 25;
   }
   
   public void draw(){
     fill(0);
     stroke(COLOR_NEURAL);
     strokeWeight(2);
-    circle(this.pos.x, this.pos.y, 60);
+    circle(this.pos.x, this.pos.y, 50);
     fill(COLOR_NEURAL);
     textSize(32);
     textAlign(CENTER);
-    text("N", this.pos.x, this.pos.y+8);
+    text("N", this.pos.x, this.pos.y+12);
+    drawAttachments(COLOR_NEURAL);
   }
   
   public Num _forward(){
-    this.outputNum = sum(getInputs());
+    while (weights.size() < inputs.size()){
+      Num n = new Num(0);
+      n.makeParam();
+      weights.add(n);
+    }
+    Num sum = new Num(0);
+    for (int i=0; i<weights.size(); i++){
+      sum.add(getInput(i).mult(weights.get(i)));
+    }
+    this.outputNum = sum.add(bias).tanh();
     return this.outputNum;
   }
   
