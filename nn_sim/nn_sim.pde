@@ -7,6 +7,7 @@ ArrayList<Module> modules = new ArrayList<Module>();
 ArrayList<Port> ports = new ArrayList<Port>();
 ArrayList<Connector> connectors = new ArrayList<Connector>();
 ArrayList<Button> buttons = new ArrayList<Button>();
+ArrayList<Slider> sliders = new ArrayList<Slider>();
 Module grabbedModule;
 Connector grabbedConnector;
 Dataset circleData = new CircleDataset(80, 20);
@@ -98,6 +99,12 @@ void mousePressed(){
       }
     }
     
+    for (Slider s: sliders){
+      if (s.mouseDown()){
+        return;
+      }
+    }
+    
     
     
     for (int i=0; i<ports.size(); i++){
@@ -112,8 +119,6 @@ void mousePressed(){
         }else{
           grabbedConnector = new Connector(ports.get(i));
           ports.get(i).occupied = true;
-          //connectors.add(grabbedConnector);
-          print("!");
           return;
         }
       }
@@ -137,6 +142,10 @@ void mouseReleased(){
     if (grabbedModule != null){
       modules.add(grabbedModule);
       grabbedModule = null;
+    }
+    
+    for (Slider s: sliders){
+      s.mouseUp();
     }
   }
 }
@@ -166,6 +175,10 @@ void draw(){
     
     for (Button b: buttons){
       b.tick();
+    }
+    
+    for (Slider s: sliders){
+      s.tick();  // Stick
     }
   }
 }

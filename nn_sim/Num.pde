@@ -34,7 +34,6 @@ public class Num{
     Function backward = () -> {
       this.grad += 1.0 * out.grad;
       other.grad += 1.0 * out.grad; 
-      println(this, out.grad);
     };
     out.setBackward(backward);
     return out; 
@@ -106,10 +105,10 @@ public class Num{
     }
   }
   
-  public void descend(){
+  public void descend(double stepSize){
     
     for (Num node: (topologicalSort(this))){
-      node._descend(0.005);
+      node._descend(stepSize);
     }
     
   }

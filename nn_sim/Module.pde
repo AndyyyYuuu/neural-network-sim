@@ -6,7 +6,9 @@ public abstract class Module{
   public abstract boolean mouseIsIn();
   public abstract Module createNew();
   
+  
   public ArrayList<Button> buttons = new ArrayList<Button>();
+  public ArrayList<Slider> sliders = new ArrayList<Slider>();
   public ArrayList<InputPort> inputs = new ArrayList<InputPort>();
   public OutputPort output;
   
@@ -71,6 +73,9 @@ public abstract class Module{
     
     for (Button b: this.buttons){
       b.draw(c);
+    }
+    for (Slider s: this.sliders){
+      s.draw(c);
     }
   }
   

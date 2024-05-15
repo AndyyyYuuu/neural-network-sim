@@ -79,7 +79,6 @@ public void dottedLine(float x1, float y1, float x2, float y2, float start){
   }
   
   for (float i=start; i<=1; i+=dotLength/d){
-    println(i, drawLine);
     if (drawLine){
       float x = x1 + unitx*i*d;
       float y = y1 + unity*i*d;
@@ -102,15 +101,22 @@ public String processDouble(double n){
 }
 
 public String processDouble(double n, int chars, boolean alwaysShowSign){
-  String result = Double.toString(Math.round(n * Math.pow(10, chars-2))/Math.pow(10, chars-2));
+  
+  String result = doubleToString(Math.round(n * Math.pow(10, chars-2))/Math.pow(10, chars-2));
   if (n >= 0){
     result = (alwaysShowSign?"+":"") + result;
   }
-  if (result.length() > 6){
-    result = result.substring(0, 6);
+  if (result.length() > chars){
+    result = result.substring(0, chars);
   }
+  //return result.substring(0, chars).replace(" ", "0");
   return String.format("%-"+chars+"s", result).replace(" ", "0");
 }
+
+public String doubleToString(double n){
+  return String.format("%.9f", n);
+}
+
 
 // Shortened `new PVector()`
 public PVector vec(float x, float y){

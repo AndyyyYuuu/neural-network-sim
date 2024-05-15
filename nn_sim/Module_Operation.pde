@@ -156,14 +156,14 @@ public class NeuronModule extends OpModule{
   }
   
   public Num _forward(){
-    while (weights.size() < inputs.size()){
-      Num n = new Num(0);
+    while (weights.size() < getInputs().size()){
+      Num n = new Num(Math.random()*2-1);
       n.makeParam();
       weights.add(n);
     }
     Num sum = new Num(0);
     for (int i=0; i<weights.size(); i++){
-      sum.add(getInput(i).mult(weights.get(i)));
+      sum = sum.add(getInput(i).mult(weights.get(i)));
     }
     this.outputNum = sum.add(bias).tanh();
     return this.outputNum;

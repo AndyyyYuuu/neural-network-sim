@@ -82,3 +82,78 @@ public class Button{
     popMatrix();
   }
 }
+
+public class Slider{
+  private Module parent;
+  private PVector pos, relPos;
+  private float size;
+  private float status;
+  private float sliderX;
+  private boolean grabbed;
+  
+  public Slider(PVector pos, float size, float startStatus, Module parent){
+    this.parent = parent;
+    this.pos = pos;
+    this.size = size;
+    sliderTo(startStatus);
+    
+    sliders.add(this);
+  }
+  
+  public void sliderTo(float at){
+    this.status = min(1, max(0, at));
+    this.sliderX = this.pos.x + this.size*this.status;
+  }
+  
+  
+  
+  public boolean mouseDown(){
+    if (mouseIn()){
+      this.grabbed = true;
+      return true;
+    }
+    return false;
+  }
+  
+  public void mouseUp(){
+    this.grabbed = false;
+  }
+  
+  public boolean mouseIn(){
+    return mouseInRect(parent.pos.x+pos.x, parent.pos.y+pos.y-5, size, 10);
+  }
+  
+  public boolean isOn(){
+    return status > 0;
+  }
+  
+  public void turnOff(){
+    status = 0;
+  }
+  
+  public void tick(){
+    if (this.grabbed){
+      sliderTo((mouseX-(parent.pos.x + this.pos.x))/this.size);
+    }
+  }
+  
+  public void draw(color c){
+    pushMatrix();
+    translate(parent.pos.x, parent.pos.y);
+    stroke(c);
+    line(pos.x, pos.y+3, pos.x+size, pos.y+3);
+    line(pos.x, pos.y-3, pos.x+size, pos.y-3);
+    if (mouseIn()){
+      fill(c);
+    }else{
+      fill(0);
+    }
+    rect(sliderX-2, pos.y-5, 4, 10);
+    
+    popMatrix();
+  }
+  
+  public float getStatus(){
+    return status;
+  }
+}
