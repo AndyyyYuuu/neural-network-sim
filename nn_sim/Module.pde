@@ -4,13 +4,15 @@ public abstract class Module{
   public PVector pos, mousePos;
   public abstract void draw();
   public abstract boolean mouseIsIn();
-  public abstract Module createNew();
+  public abstract Module createNew(PVector pos);
   
   
   public ArrayList<Button> buttons = new ArrayList<Button>();
   public ArrayList<Slider> sliders = new ArrayList<Slider>();
   public ArrayList<InputPort> inputs = new ArrayList<InputPort>();
   public OutputPort output;
+  
+  public String name;
   
   public Num outputNum = new Num(0);
   
@@ -26,7 +28,6 @@ public abstract class Module{
   
   public Module(PVector pos){
     this.pos = pos;
-    
   }
   
   public Num forward(){

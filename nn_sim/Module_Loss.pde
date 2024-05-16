@@ -18,6 +18,7 @@ public class LossModule extends OpModule{
     
     output = new OutputPort(this, new PVector(55, 5));
     funcName = "μ²";
+    name = "MSE Loss Function";
   }
   
   public void draw(){
@@ -82,8 +83,8 @@ public class LossModule extends OpModule{
     this.outputNum = meanSquaredError(inputYPred, inputY);
   }
   
-  public Module createNew(){
-    return new LossModule(this.pos, this.batchSize);
+  public Module createNew(PVector pos){
+    return new LossModule(pos, this.batchSize);
   }
   
   public void clearStorage(){

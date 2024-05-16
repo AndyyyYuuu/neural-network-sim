@@ -9,7 +9,7 @@ public class OptimModule extends Module{
     buttons.add(new Button(new PVector(-10, -30), new PVector(20, 20), ICON_DESCEND, this));
     buttons.add(new Button(new PVector(20, -30), new PVector(20, 20), ICON_ZERO, this));
     sliders.add(new Slider(new PVector(-40, 20), 80, 0.3, this));
-    
+    name = "Optimizer";
   }
   /*
   public void setNum(double num){
@@ -71,7 +71,7 @@ public class OptimModule extends Module{
     return this.outputNum;
   }
   
-  public Module createNew(){
-    return new OptimModule(this.pos);
+  public Module createNew(PVector pos){
+    return new OptimModule(pos);
   }
 }

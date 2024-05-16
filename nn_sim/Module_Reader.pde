@@ -3,6 +3,7 @@ public class ReaderModule extends Module{
   public ReaderModule(PVector pos){
     super(pos);
     inputs.add(new InputPort(this, vec(-25, 0)));
+    name = "Number Reader";
   }
   
   public void draw(){
@@ -27,7 +28,7 @@ public class ReaderModule extends Module{
     return null;
   }
   
-  public Module createNew(){
-    return new ReaderModule(this.pos);
+  public Module createNew(PVector pos){
+    return new ReaderModule(pos);
   }
 }

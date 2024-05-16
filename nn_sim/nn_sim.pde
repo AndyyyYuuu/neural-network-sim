@@ -23,18 +23,23 @@ LossModule lossModule;
 OptimModule optimModule;
 ReaderModule readerModule;
 Module[] moduleTypes;
+MenuFolder[] menuFolders;
 
 int START = 0;
 int PLAY = 1;
 int mode = PLAY;
 
 void setup(){
-  size(800, 600);
-  fullScreen();
+  size(1200, 720);
+  //fullScreen();
   pixelDensity(2);
   font = createFont("font/JetBrainsMono-VariableFont_wght.ttf", 32);
   textFont(font);
+  strokeWeight(2);
   circleData = new CircleDataset(80, 20);
+  
+  ICON_OPEN.load();
+  ICON_CLOSED.load();
   
   // Pretend static methods (screw Processing for not having static methods) that also serve as the buttons
   addModule = new AddModule(new PVector(60, 30));
@@ -47,18 +52,15 @@ void setup(){
   lossModule = new LossModule(new PVector(650, 30), 80);
   optimModule = new OptimModule(new PVector(750, 30));
   readerModule = new ReaderModule(new PVector(850, 30));
-  moduleTypes = new Module[]{
-    addModule,
-    multModule, 
-    sinModule,
-    tanhModule,
-    neuronModule, 
-    paramModule, 
-    dataModule,
-    lossModule,
-    optimModule,
-    readerModule
+  
+  menuFolders = new MenuFolder[]{
+    new MenuFolder("Simple Operations", new Module[]{addModule, multModule, sinModule, tanhModule}, COLOR_OP),
+    new MenuFolder("Advanced Operations", new Module[]{neuronModule, lossModule}, COLOR_NEURAL),
+    new MenuFolder("Data Sources", new Module[]{dataModule}, COLOR_DATA),
+    new MenuFolder("Optimization", new Module[]{optimModule}, COLOR_OPTIM),
+    new MenuFolder("Reading & Analysis", new Module[]{readerModule}, COLOR_READER),
   };
+  
   Num a = new Num(5);
   Num b = new Num(4);
   Num c = new Num(3);
@@ -87,11 +89,12 @@ void keyPressed(){
 
 void mousePressed(){
   if (mode == PLAY){
-    for (int i=0; i<moduleTypes.length; i++){
-      if (moduleTypes[i].mouseIsIn()){
-        grabbedModule = moduleTypes[i].createNew();
+    
+    for (MenuFolder m: menuFolders){
+      Module clickResult = m.click();
+      if (clickResult != null){
+        grabbedModule = clickResult;
         grabbedModule.grab();
-        
         return;
       }
     }
@@ -156,9 +159,6 @@ void mouseReleased(){
 void draw(){
   background(0);
   if (mode == PLAY){
-    for (int i=0; i<moduleTypes.length; i++){
-      moduleTypes[i].show();
-    }
 
     for (Module module: modules){
       module.show();
@@ -169,6 +169,11 @@ void draw(){
     }
     if (grabbedConnector != null){
       grabbedConnector.show();
+    }
+    
+    float yAt = 50;
+    for (MenuFolder m: menuFolders){
+      yAt += m.draw(yAt);
     }
     
     if (grabbedModule != null){
@@ -183,5 +188,7 @@ void draw(){
     for (Slider s: sliders){
       s.tick();  // Stick
     }
+    
+    
   }
 }

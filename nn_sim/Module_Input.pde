@@ -15,6 +15,7 @@ public class NumModule extends InputModule{
   public NumModule(PVector pos){
     super(pos);
     output = new OutputPort(this, vec(30, 0));
+    name = "Constant Number";
   }
   
   public NumModule(){
@@ -47,8 +48,8 @@ public class NumModule extends InputModule{
     return this.outputNum;
   }
   
-  public Module createNew(){
-    return new NumModule(this.pos);
+  public Module createNew(PVector pos){
+    return new NumModule(pos);
   }
   
 }
@@ -69,8 +70,8 @@ public class DataValueModule extends NumModule{
     return this.outputNum;
   }
   
-  public Module createNew(){
-    return new DataValueModule(this.pos, this.dataModule);
+  public Module createNew(PVector pos){
+    return new DataValueModule(pos, this.dataModule);
   }
   
 }
@@ -79,6 +80,7 @@ public class ParamModule extends NumModule{
   public ParamModule(PVector pos){
     super(pos);
     this.outputNum.makeParam();
+    name = "Parameter";
   }
   
   public void draw(){
@@ -122,6 +124,7 @@ public class DataModule extends InputModule{
     x1.setNum(data.getTrain().inputs[0]);
     x2.setNum(data.getTrain().inputs[1]);
     y.setNum(data.getTrain().output);
+    name = "Dataset Loader";
   }
   
   public void draw(){
@@ -161,8 +164,8 @@ public class DataModule extends InputModule{
     return new Num(1);
   }
   
-  public Module createNew(){
-    return new DataModule(this.pos);
+  public Module createNew(PVector pos){
+    return new DataModule(pos);
   }
   
 }

@@ -16,7 +16,7 @@ public abstract class OpModule extends Module{
 }
 
 public abstract class BasicOpModule extends OpModule{
-  public abstract Module createNew();
+  public abstract Module createNew(PVector pos);
   public BasicOpModule(PVector pos){
     super(pos);
     output = new OutputPort(this, new PVector(23, 0));
@@ -35,7 +35,7 @@ public abstract class BasicOpModule extends OpModule{
 }
 
 public abstract class BinaryOpModule extends BasicOpModule{
-  public abstract Module createNew();
+  public abstract Module createNew(PVector pos);
   
   public BinaryOpModule(PVector pos){
     super(pos);
@@ -48,6 +48,7 @@ public class MultModule extends BinaryOpModule{
 
   public MultModule(PVector pos){
     super(pos);
+    name = "Multiplication";
   }
   
   public void draw(){
@@ -63,8 +64,8 @@ public class MultModule extends BinaryOpModule{
     return this.outputNum;
   }
   
-  public Module createNew(){
-    return new MultModule(this.pos);
+  public Module createNew(PVector pos){
+    return new MultModule(pos);
   }
   
 }
@@ -72,6 +73,7 @@ public class MultModule extends BinaryOpModule{
 public class AddModule extends BinaryOpModule{
   public AddModule(PVector pos){
     super(pos);
+    name = "Addition";
   }
   
   public void draw(){
@@ -87,8 +89,8 @@ public class AddModule extends BinaryOpModule{
     return this.outputNum;
   }
   
-  public Module createNew(){
-    return new AddModule(this.pos);
+  public Module createNew(PVector pos){
+    return new AddModule(pos);
   }
   
 }
@@ -106,6 +108,7 @@ public class TanhModule extends UnaryOpModule{
   
   public TanhModule(PVector pos){
     super(pos);
+    name = "Hyperbolic Tangent";
   }
   
   public void draw(){
@@ -123,8 +126,8 @@ public class TanhModule extends UnaryOpModule{
   
   
   
-  public Module createNew(){
-    return new TanhModule(this.pos);
+  public Module createNew(PVector pos){
+    return new TanhModule(pos);
   }
 }
 
@@ -133,6 +136,7 @@ public class SinModule extends UnaryOpModule{
   
   public SinModule(PVector pos){
     super(pos);
+    name = "Trigonometric Sine";
   }
   
   public void draw(){
@@ -148,8 +152,8 @@ public class SinModule extends UnaryOpModule{
     return this.outputNum;
   }
 
-  public Module createNew(){
-    return new SinModule(this.pos);
+  public Module createNew(PVector pos){
+    return new SinModule(pos);
   }
 }
 
@@ -162,6 +166,7 @@ public class NeuronModule extends OpModule{
     inputs.add(new InputPort(this, new PVector(-25, 0)));
     output = new OutputPort(this, new PVector(35, 0));
     bias.makeParam();
+    name = "Linear Neuron";
   }
   
   public boolean mouseIsIn(){
@@ -190,11 +195,11 @@ public class NeuronModule extends OpModule{
     for (int i=0; i<weights.size(); i++){
       sum = sum.add(getInput(i).mult(weights.get(i)));
     }
-    this.outputNum = sum.add(bias).tanh();
+    this.outputNum = sum.add(bias); //.tanh();
     return this.outputNum;
   }
   
-  public Module createNew(){
-    return new NeuronModule(this.pos);
+  public Module createNew(PVector pos){
+    return new NeuronModule(pos);
   }
 }
