@@ -27,9 +27,9 @@ public class MenuFolder{
     text(name, MENU_X+5, startY+18);
     if (isOpen){
       ICON_OPEN.draw(MENU_X+184, startY+12.5, c, 20);
-      
+      float x = MENU_X + 20;
       for (int i=0; i<contents.length; i++){
-        float x = MENU_X + 20;
+        
         float y = MENU_FOLDER_H + startY + i*MENU_ITEM_H;
         stroke(c);
         fill(0);
@@ -37,11 +37,21 @@ public class MenuFolder{
         fill(c);
         textSize(12);
         text(contents[i].name, x + 5, y + 15);
+        
+        // Fancy folder lines
+        if (i == contents.length-1){
+          line(MENU_X + 5, y, MENU_X + 5, y+MENU_ITEM_H/2);
+        }else{
+          line(MENU_X + 5, y, MENU_X + 5, y+MENU_ITEM_H);
+        }
+        line(MENU_X + 5, y+MENU_ITEM_H/2, x, y+MENU_ITEM_H/2);
+        
+        
       }
-      return 30 + contents.length*MENU_ITEM_H;
+      return 35 + contents.length*MENU_ITEM_H;
     }else{
       ICON_CLOSED.draw(MENU_X+184, startY+12.5, c, 20);
-      return 30;
+      return 35;
     }
     
   }

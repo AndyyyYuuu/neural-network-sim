@@ -111,8 +111,6 @@ void mousePressed(){
       }
     }
     
-    
-    
     for (int i=0; i<ports.size(); i++){
       if (ports.get(i).mouseIsIn()){
         if (grabbedConnector != null){
