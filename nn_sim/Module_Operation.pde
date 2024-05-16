@@ -129,6 +129,31 @@ public class TanhModule extends UnaryOpModule{
 }
 
 
+public class SinModule extends UnaryOpModule{
+  
+  public SinModule(PVector pos){
+    super(pos);
+  }
+  
+  public void draw(){
+    super.draw();
+    fill(COLOR_OP);
+    textSize(9);
+    textAlign(CENTER);
+    text("sin", this.pos.x+2, this.pos.y+3);
+  }
+  
+  public Num _forward(){
+    this.outputNum = getInput(0).sin();
+    return this.outputNum;
+  }
+
+  public Module createNew(){
+    return new SinModule(this.pos);
+  }
+}
+
+
 public class NeuronModule extends OpModule{
   public ArrayList<Num> weights = new ArrayList<Num>();
   public Num bias = new Num(0);

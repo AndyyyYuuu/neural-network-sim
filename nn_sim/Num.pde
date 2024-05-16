@@ -79,6 +79,15 @@ public class Num{
     return out; 
   }
   
+  public Num sin(){
+    Num out = new Num(Math.sin(this.getValue()), new Num[]{this}, "sin");
+    Function backward = () -> {
+      this.grad += Math.cos(out.getValue()) * out.grad;
+    };
+    out.setBackward(backward);
+    return out; 
+  }
+  
   public double getValue(){
     return this.value;
   }

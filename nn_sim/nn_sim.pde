@@ -15,6 +15,7 @@ Dataset circleData = new CircleDataset(80, 20);
 AddModule addModule;
 MultModule multModule;
 TanhModule tanhModule;
+SinModule sinModule;
 NeuronModule neuronModule;
 ParamModule paramModule;
 DataModule dataModule;
@@ -39,15 +40,17 @@ void setup(){
   addModule = new AddModule(new PVector(60, 30));
   multModule = new MultModule(new PVector(120, 30));
   tanhModule = new TanhModule(new PVector(180, 30));
-  paramModule = new ParamModule(new PVector(250, 30));
+  sinModule = new SinModule(new PVector(240, 30));
+  paramModule = new ParamModule(new PVector(350, 30));
   neuronModule = new NeuronModule(new PVector(450, 30));
   dataModule = new DataModule(new PVector(550, 30));
-  lossModule = new LossModule(new PVector(650, 30), 40);
+  lossModule = new LossModule(new PVector(650, 30), 80);
   optimModule = new OptimModule(new PVector(750, 30));
   readerModule = new ReaderModule(new PVector(850, 30));
   moduleTypes = new Module[]{
     addModule,
     multModule, 
+    sinModule,
     tanhModule,
     neuronModule, 
     paramModule, 
