@@ -77,16 +77,6 @@ void setup(){
   println(l);*/
 }
 
-void keyPressed(){
-  if (key == 'l'){
-    for (Module m: modules){
-      if (m instanceof LossModule){
-        println(m.forward());
-      }
-    }
-  }
-}
-
 void mousePressed(){
   if (mode == PLAY){
     
