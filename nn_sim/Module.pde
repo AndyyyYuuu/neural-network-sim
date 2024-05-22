@@ -7,6 +7,7 @@ public abstract class Module{
   public abstract Module createNew(PVector pos);
   
   
+  public boolean calledNext = false;
   public ArrayList<Button> buttons = new ArrayList<Button>();
   public ArrayList<Slider> sliders = new ArrayList<Slider>();
   public ArrayList<InputPort> inputs = new ArrayList<InputPort>();
@@ -19,12 +20,46 @@ public abstract class Module{
   public Module(){
   }
   
-  public Num getInput(int idx){
-    return this.inputs.get(idx).getOtherEnd().parent.forward();
+  public Module getInput(int idx){
+    return this.inputs.get(idx).getOtherEnd().parent;
     
   }
   
+  public ArrayList<Num> getInputs(){
+    ArrayList<Num> results = new ArrayList<Num>();
+    for (int i=0; i<this.inputs.size(); i++){
+      results.add(getInput(i).forward());
+    }
+    return results;
+  }
   
+  // Next all leaf nodes from root
+  public void next(){
+    clearNext();
+    _next();
+  }
+  
+  public void clearNext(){
+    calledNext = false;
+    if (hasAllInputs()){
+      for (int i=0; i<this.inputs.size(); i++){
+        Module input = this.inputs.get(i).getOtherEnd().parent;
+        input.clearNext();
+      }
+    }
+  }
+  
+  public void _next(){
+    calledNext = true;
+    if (hasAllInputs()){
+      for (int i=0; i<this.inputs.size(); i++){
+        Module input = this.inputs.get(i).getOtherEnd().parent;
+        if (!input.calledNext){
+          input._next();
+        }
+      }
+    }
+  }
   
   public Module(PVector pos){
     this.pos = pos;

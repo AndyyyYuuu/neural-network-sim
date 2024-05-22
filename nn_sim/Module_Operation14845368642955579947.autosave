@@ -6,6 +6,13 @@ public abstract class OpModule extends Module{
     
   }
   
+  public ArrayList<Num> getInputs(boolean modify){
+    ArrayList<Num> results = new ArrayList<Num>();
+    for (int i=0; i<this.inputs.size(); i++){
+      results.add(getInput(i, modify));
+    }
+    return results;
+  }
 }
 
 public abstract class BasicOpModule extends OpModule{
@@ -52,8 +59,8 @@ public class MultModule extends BinaryOpModule{
     text("×", this.pos.x, this.pos.y+11);
   }
   
-  public Num _forward(){
-    this.outputNum = getInput(0).forward().mult(getInput(1).forward());
+  public Num _forward(boolean modify){
+    this.outputNum = getInput(0, modify).mult(getInput(1, modify));
     return this.outputNum;
   }
   
@@ -77,8 +84,8 @@ public class AddModule extends BinaryOpModule{
     text("+", this.pos.x, this.pos.y+11);
   }
   
-  public Num _forward(){
-    this.outputNum = getInput(0).forward().add(getInput(1).forward());
+  public Num _forward(boolean modify){
+    this.outputNum = getInput(0, modify).add(getInput(1, modify));
     return this.outputNum;
   }
   
@@ -112,12 +119,10 @@ public class TanhModule extends UnaryOpModule{
     text("tanh", this.pos.x+2, this.pos.y+3);
   }
   
-  public Num _forward(){
-    this.outputNum = getInput(0).forward().tanh();
+  public Num _forward(boolean modify){
+    this.outputNum = getInput(0, modify).tanh();
     return this.outputNum;
   }
-  
-  
   
   public Module createNew(PVector pos){
     return new TanhModule(pos);
@@ -140,8 +145,8 @@ public class SinModule extends UnaryOpModule{
     text("sin", this.pos.x+2, this.pos.y+3);
   }
   
-  public Num _forward(){
-    this.outputNum = getInput(0).forward().sin();
+  public Num _forward(boolean modify){
+    this.outputNum = getInput(0, modify).sin();
     return this.outputNum;
   }
 
@@ -178,15 +183,15 @@ public class NeuronModule extends OpModule{
     drawAttachments(COLOR_NEURAL);
   }
   
-  public Num _forward(){
-    while (weights.size() < getInputs().size()){
+  public Num _forward(boolean modify){
+    while (weights.size() < getInputs(false).size()){
       Num n = new Num(Math.random()*2-1);
       n.makeParam();
       weights.add(n);
     }
     Num sum = new Num(0);
     for (int i=0; i<weights.size(); i++){
-      sum = sum.add(getInput(i).forward().mult(weights.get(i)));
+      sum = sum.add(getInput(i, ).mult(weights.get(i)));
     }
     this.outputNum = sum.add(bias); //.tanh();
     return this.outputNum;

@@ -52,7 +52,10 @@ public class LossModule extends OpModule{
   }
   
   public Num _forward(){
-    
+    return this.outputNum;
+  }
+  
+  public void _next(){
     if (inputY.size() < this.batchSize){
       if (buttons.get(0).isOn()){
         calculateLoss();
@@ -60,6 +63,7 @@ public class LossModule extends OpModule{
       }
       if (calculatingAll){
         calculateLoss();
+        
       }
     } else {
       calculatingAll = false;
@@ -72,14 +76,14 @@ public class LossModule extends OpModule{
         inputYPred.clear();
         inputY.clear();
       }
-    } 
+    }
     
-    return this.outputNum;
   }
   
   private void calculateLoss(){
-    inputY.add(getInput(0));
-    inputYPred.add(getInput(1));
+    inputY.add(getInput(0).forward());
+    inputYPred.add(getInput(1).forward());
+    super._next();
     this.outputNum = meanSquaredError(inputYPred, inputY);
   }
   

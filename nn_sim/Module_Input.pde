@@ -66,8 +66,17 @@ public class DataValueModule extends NumModule{
   }
   
   public Num _forward(){
-    this.dataModule.next();
     return this.outputNum;
+  }
+  
+  public void _next(){
+    calledNext = true;
+    this.dataModule._next();
+  }
+  
+  public void clearNext(){
+    calledNext = false;
+    this.dataModule.clearNext();
   }
   
   public Module createNew(PVector pos){
@@ -152,11 +161,14 @@ public class DataModule extends InputModule{
     return mouseInRect(this.pos.x-20, this.pos.y-50, 40, 100);
   }
   
-  public void next(){
-    this.data.next();
-    x1.setNum(data.getTrain().inputs[0]);
-    x2.setNum(data.getTrain().inputs[1]);
-    y.setNum(data.getTrain().output);
+  public void _next(){
+    if (!calledNext){
+      data.next();
+      x1.setNum(data.getTrain().inputs[0]);
+      x2.setNum(data.getTrain().inputs[1]);
+      y.setNum(data.getTrain().output);
+      calledNext = true;
+    }
   }
   
   public Num _forward(){

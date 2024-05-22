@@ -16,7 +16,7 @@ public class ReaderModule extends Module{
     textAlign(LEFT);
     textSize(11);
     if (hasAllInputs()){
-      text(processDouble(inputs.get(0).getOtherEnd().parent.outputNum.getValue()), this.pos.x-20, this.pos.y+4);
+      text(processDouble(getInput(0).forward().getValue()), this.pos.x-20, this.pos.y+4);
     }
   }
   
