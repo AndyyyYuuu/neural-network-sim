@@ -6,6 +6,7 @@ Icon ICON_BACKWARD = new Icon("icon/backward.png");
 Icon ICON_ZERO = new Icon("icon/zero.png");
 Icon ICON_OPEN = new Icon("icon/folder_open.png");
 Icon ICON_CLOSED = new Icon("icon/folder_closed.png");
+Icon ICON_DELETE = new Icon("icon/delete.png");
 
 public class Icon{
   PImage img;

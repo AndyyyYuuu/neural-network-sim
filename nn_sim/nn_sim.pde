@@ -22,6 +22,8 @@ DataModule dataModule;
 LossModule lossModule;
 OptimModule optimModule;
 ReaderModule readerModule;
+NumModule numModule;
+GraphModule graphModule;
 Module[] moduleTypes;
 MenuFolder[] menuFolders;
 
@@ -52,29 +54,16 @@ void setup(){
   lossModule = new LossModule(new PVector(650, 30), 80);
   optimModule = new OptimModule(new PVector(750, 30));
   readerModule = new ReaderModule(new PVector(850, 30));
+  numModule = new NumModule(new PVector(0, 0));
+  graphModule = new GraphModule(new PVector(0, 0));
   
   menuFolders = new MenuFolder[]{
     new MenuFolder("Simple Operations", new Module[]{addModule, multModule, sinModule, tanhModule}, COLOR_OP),
     new MenuFolder("Advanced Operations", new Module[]{neuronModule, lossModule}, COLOR_NEURAL),
-    new MenuFolder("Data Sources", new Module[]{dataModule}, COLOR_DATA),
-    new MenuFolder("Optimization", new Module[]{optimModule}, COLOR_OPTIM),
-    new MenuFolder("Reading & Analysis", new Module[]{readerModule}, COLOR_READER),
+    new MenuFolder("Data Sources", new Module[]{dataModule, numModule}, COLOR_DATA),
+    new MenuFolder("Optimization", new Module[]{optimModule, paramModule}, COLOR_OPTIM),
+    new MenuFolder("Reading & Analysis", new Module[]{readerModule, graphModule}, COLOR_READER),
   };
-  
-  Num a = new Num(5);
-  Num b = new Num(4);
-  Num c = new Num(3);
-  Num d = a.mult(b);
-  Num e = d.mult(c);
-  Num l = e.mult(c);
-  l.backward();
-  
-  /*println(a);
-  println(b);
-  println(c);
-  println(d);
-  println(e);
-  println(l);*/
 }
 
 void mousePressed(){

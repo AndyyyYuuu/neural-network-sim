@@ -55,6 +55,10 @@ public class LossModule extends OpModule{
     return this.outputNum;
   }
   
+  public boolean isDone(){
+    return inputY.size() >= this.batchSize;
+  }
+  
   public void _next(){
     if (inputY.size() < this.batchSize){
       if (buttons.get(0).isOn()){

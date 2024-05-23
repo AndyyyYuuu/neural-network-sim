@@ -89,7 +89,7 @@ public class ParamModule extends NumModule{
   public ParamModule(PVector pos){
     super(pos);
     this.outputNum.makeParam();
-    name = "Parameter";
+    name = "Optimizable Parameter";
   }
   
   public void draw(){
@@ -97,7 +97,7 @@ public class ParamModule extends NumModule{
     stroke(COLOR_OPTIM);
     strokeWeight(2);
     rect(this.pos.x-22, this.pos.y-8, 44, 16);
-    drawAttachments(COLOR_DATA);
+    drawAttachments(COLOR_OPTIM);
     fill(COLOR_OPTIM);
     textAlign(LEFT);
     textSize(11);
@@ -106,8 +106,8 @@ public class ParamModule extends NumModule{
     text(processDouble(this.outputNum.grad), this.pos.x-20, this.pos.y+18);
   }
   
-  public Module createNew(){
-    return new ParamModule(this.pos);
+  public Module createNew(PVector pos){
+    return new ParamModule(pos);
     
   }
   

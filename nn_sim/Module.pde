@@ -59,6 +59,13 @@ public abstract class Module{
         }
       }
     }
+    /*
+    if (output != null && output.getOtherEnd() != null){
+      Module outModule = output.getOtherEnd().parent;
+      if (outModule instanceof GraphModule){
+        ((GraphModule)outModule).addValue(forward().getValue());
+      }
+    }*/
   }
   
   public Module(PVector pos){

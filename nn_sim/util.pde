@@ -92,6 +92,10 @@ public void dottedLine(float x1, float y1, float x2, float y2, float start){
   }
 }
 
+public boolean posInRect(float x, float y, float rx, float ry, float rw, float rh){
+  return x > rx && x < rx+rw && y > ry && y < ry+rh;
+}
+
 public boolean mouseInRect(float x, float y, float w, float h){
   return mouseX > x && mouseX < x+w && mouseY > y && mouseY < y+h;
 }
