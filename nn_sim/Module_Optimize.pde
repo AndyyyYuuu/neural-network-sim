@@ -64,7 +64,7 @@ public class OptimModule extends Module{
   
   public Num _forward(){
     inputLoss = this.getInput(0).forward();
-    inputs.get(0).getOtherEnd().parent.next();
+    //inputs.get(0).getOtherEnd().parent.next();
     
     return this.outputNum;
   }

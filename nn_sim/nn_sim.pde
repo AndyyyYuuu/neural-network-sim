@@ -19,6 +19,7 @@ SinModule sinModule;
 NeuronModule neuronModule;
 ParamModule paramModule;
 DataModule dataModule;
+MeanModule meanModule;
 LossModule lossModule;
 OptimModule optimModule;
 ReaderModule readerModule;
@@ -56,10 +57,11 @@ void setup(){
   readerModule = new ReaderModule(new PVector(850, 30));
   numModule = new NumModule(new PVector(0, 0));
   graphModule = new GraphModule(new PVector(0, 0));
+  meanModule = new MeanModule(new PVector(0, 0), 80);
   
   menuFolders = new MenuFolder[]{
     new MenuFolder("Simple Operations", new Module[]{addModule, multModule, sinModule, tanhModule}, COLOR_OP),
-    new MenuFolder("Advanced Operations", new Module[]{neuronModule, lossModule}, COLOR_NEURAL),
+    new MenuFolder("Advanced Operations", new Module[]{neuronModule, meanModule, lossModule}, COLOR_NEURAL),
     new MenuFolder("Data Sources", new Module[]{dataModule, numModule}, COLOR_DATA),
     new MenuFolder("Optimization", new Module[]{optimModule, paramModule}, COLOR_OPTIM),
     new MenuFolder("Reading & Analysis", new Module[]{readerModule, graphModule}, COLOR_READER),
