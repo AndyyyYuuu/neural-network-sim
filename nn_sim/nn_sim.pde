@@ -32,7 +32,7 @@ int PLAY = 1;
 int mode = PLAY;
 
 void setup(){
-  size(1200, 720);
+  size(1400, 720);
   //fullScreen();
   pixelDensity(2);
   font = createFont("font/JetBrainsMono-VariableFont_wght.ttf", 32);
