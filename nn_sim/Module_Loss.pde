@@ -146,6 +146,10 @@ public class LossModule extends OpModule{
     }
     fill(0);
     drawAttachments(COLOR_NEURAL);
+    
+  }
+  
+  public void update(){
     if (hasAllInputs()){
       if (inputY.size() < this.batchSize){
         if (buttons.get(0).isOn()){

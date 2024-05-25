@@ -33,6 +33,9 @@ public abstract class Module{
     return results;
   }
   
+  public void update(){
+  }
+  
   // Next all leaf nodes from root
   public void next(){
     clearNext();
@@ -91,6 +94,7 @@ public abstract class Module{
   
   public void show(){
     this.draw();
+    this.update();
   }
   
   

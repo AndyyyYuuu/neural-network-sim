@@ -22,7 +22,6 @@ public class OptimModule extends Module{
     textAlign(LEFT);
     textSize(12);
     String lossText;
-    forward();
     if (this.hasAllInputs() && inputLoss != null){
       lossText = "ℓ = "+processDouble(inputLoss.value, 8, false);
     }else{
@@ -36,6 +35,10 @@ public class OptimModule extends Module{
     
     drawAttachments(COLOR_OPTIM);
     
+    
+  }
+  
+  public void update(){
     if (buttons.get(0).isOn()){
       buttons.get(0).turnOff();
       if (this.hasAllInputs()){

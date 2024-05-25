@@ -73,6 +73,10 @@ public class GraphModule extends Module{
         }
       }
     }
+    
+  }
+  
+  public void update(){
     if (hasAllInputs() && getInput(0).forward() != null){
       if (!(getInput(0) instanceof LossModule) || ((LossModule)getInput(0)).isDone()){
         addValue(getInput(0).forward());
