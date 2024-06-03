@@ -12,19 +12,15 @@ public abstract class InputModule extends Module{
 }
 
 public class NumModule extends InputModule{
-  public NumModule(PVector pos){
+  public NumModule(PVector pos, double num){
     super(pos);
     output = new OutputPort(this, vec(30, 0));
-    name = "Constant Number";
-  }
-  
-  public NumModule(){
+    name = "Constant Number: "+num;
+    outputNum = new Num(num);
   }
   
   public void setNum(double num){
     this.outputNum = new Num(num);
-    
-    
   }
   
   public void draw(){
@@ -49,7 +45,7 @@ public class NumModule extends InputModule{
   }
   
   public Module createNew(PVector pos){
-    return new NumModule(pos);
+    return new NumModule(pos, outputNum.getValue());
   }
   
 }
@@ -57,7 +53,7 @@ public class NumModule extends InputModule{
 public class DataValueModule extends NumModule{
   public DataModule dataModule;
   public DataValueModule(PVector pos, DataModule dataModule){
-    super(pos);
+    super(pos, 0);
     this.dataModule = dataModule;
   }
   
@@ -87,7 +83,7 @@ public class DataValueModule extends NumModule{
 
 public class ParamModule extends NumModule{
   public ParamModule(PVector pos){
-    super(pos);
+    super(pos, 0);
     this.outputNum.makeParam();
     name = "Optimizable Parameter";
   }
