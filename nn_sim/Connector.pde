@@ -23,12 +23,17 @@ class Connector{
   public boolean connect(Port otherPort){
     if (this.port1.isInput != otherPort.isInput && this.port1.parent != otherPort.parent){
       this.port2 = otherPort;
+      this.port1.connect(this);
+      this.port2.connect(this);
+      
       if (this.port2 instanceof OutputPort){
+        
         Port temp = this.port1;
         this.port1 = this.port2;
         this.port2 = temp;
       }
-      this.port2.connect(this);
+      println(port1.connectors.size(), port2.connectors.size());
+      
       return true;
     }else{
       return false;
@@ -49,5 +54,13 @@ class Connector{
   
   public boolean isFullyConnected(){
     return port1 != null && port2 != null;
+  }
+  
+  public void delete(){
+    removeItem(connectors, this);
+    port1.delete(this);
+    port2.delete(this);
+    port1 = null;
+    port2 = null;
   }
 }

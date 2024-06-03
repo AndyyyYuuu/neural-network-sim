@@ -53,6 +53,9 @@ public abstract class Port{
     return this;
   }
   
+  public void delete(Connector connector){
+    removeItem(connectors, connector);
+  }
 
 }
 

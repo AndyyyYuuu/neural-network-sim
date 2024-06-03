@@ -126,4 +126,20 @@ public abstract class Module{
     }
   }
   
+  public void delete(){
+    for (Port p : inputs){
+      for (int i=0; i<p.connectors.size(); i++){
+        p.connectors.get(i).delete();
+      }
+    }
+    
+    if (output != null){
+      println(output.connectors.size());
+      for (int i=0; i<output.connectors.size(); i++){
+        output.connectors.get(i).delete();
+      }
+    }
+    
+  }
+  
 }

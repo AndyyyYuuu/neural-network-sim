@@ -146,3 +146,13 @@ public Num mean(ArrayList<Num> nums){
   }
   return sum.div(new Num(nums.size()));
 }
+
+public <T> boolean removeItem(ArrayList<T> arr, T item){
+  for (int i=0; i<arr.size(); i++){
+    if (item == arr.get(i)){
+      arr.remove(i);
+      return true;
+    }
+  }
+  return false;
+}

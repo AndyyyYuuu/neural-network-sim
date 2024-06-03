@@ -142,9 +142,19 @@ void mouseReleased(){
 void draw(){
   background(0);
   if (mode == PLAY){
+    strokeWeight(5);
+    stroke(255);
+    fill(0);
+    rect(300, 50, width-300-50, height-50-50);
 
-    for (Module module: modules){
-      module.show();
+    for (int i=0; i<modules.size(); i++){
+      Module m = modules.get(i);
+      m.show();
+      if (!posInRect(m.pos.x, m.pos.y, 300, 50, width-300-50, height-50-50) && m != grabbedModule){
+        m.delete();
+        modules.remove(i);
+        i--;
+      }
     }
     
     for (Connector connector: connectors){
@@ -171,7 +181,5 @@ void draw(){
     for (Slider s: sliders){
       s.tick();  // Stick
     }
-    
-    
   }
 }
