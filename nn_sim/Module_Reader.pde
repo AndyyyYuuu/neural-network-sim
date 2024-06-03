@@ -41,7 +41,7 @@ public class GraphModule extends Module{
   Double max = null;
   public GraphModule(PVector pos){
     super(pos);
-    inputs.add(new InputPort(this, vec(-75, -60)));
+    inputs.add(new InputPort(this, vec(-65, -70)));
     name = "Line Graph";
     buttons.add(new Button(new PVector(50, -65), new PVector(20, 20), ICON_DELETE, this));
     
@@ -58,12 +58,14 @@ public class GraphModule extends Module{
     fill(COLOR_READER);
     textAlign(LEFT);
     textSize(11);
-    if (hasAllInputs() && getInput(0).forward() != null){
-      text(processDouble(getInput(0).forward().getValue(), 8, false), this.pos.x-70, this.pos.y-56);
-    }
+    String text = (hasAllInputs() && getInput(0).forward() != null) ? processDouble(getInput(0).forward().getValue(), 8, false) : "???";
+    
+    text("y = "+text, this.pos.x-55, this.pos.y-57);
+    
+    text("n = "+values.size(), this.pos.x-55, this.pos.y-45);
     drawAttachments(COLOR_READER);
     if (min != null && max != null && values.size() > 0){
-      for (int i=0; i<values.size()-1; i++){
+      for (int i=0; i<values.size(); i++){
         circle(xPos(i, values.size()), yPos(values.get(i)), 2);
       }
       

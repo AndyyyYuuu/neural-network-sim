@@ -39,24 +39,27 @@ public class OptimModule extends Module{
   }
   
   public void update(){
-    if (buttons.get(0).isOn()){
-      buttons.get(0).turnOff();
-      if (this.hasAllInputs()){
+    if (hasAllInputs()){
+      inputLoss = this.getInput(0).forward();
+    
+      if (buttons.get(0).isOn()){
+        buttons.get(0).turnOff();
         inputLoss.zeroGrad();
         inputLoss.backward();
+        
       }
-    }
-    
-    if (buttons.get(1).isOn()){
-      buttons.get(1).turnOff();
-      inputLoss.descend(stepSize);
       
-    }
-    
-    if (buttons.get(2).isOn()){
-      buttons.get(2).turnOff();
-      inputLoss.zeroGrad();
+      if (buttons.get(1).isOn()){
+        buttons.get(1).turnOff();
+        inputLoss.descend(stepSize);
+        
+      }
       
+      if (buttons.get(2).isOn()){
+        buttons.get(2).turnOff();
+        inputLoss.zeroGrad();
+        
+      }
     }
     stepSize = Math.pow(10, -((double)sliders.get(0).getStatus()*5));
   }
@@ -66,8 +69,7 @@ public class OptimModule extends Module{
   }
   
   public Num _forward(){
-    inputLoss = this.getInput(0).forward();
-    //inputs.get(0).getOtherEnd().parent.next();
+    
     
     return this.outputNum;
   }

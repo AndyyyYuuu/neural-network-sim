@@ -138,3 +138,11 @@ public Num meanSquaredError(ArrayList<Num> yPred, ArrayList<Num> y){
   }
   return sum.div(new Num(yPred.size()));
 }
+
+public Num mean(ArrayList<Num> nums){
+  Num sum = new Num(0);
+  for (int i=0; i<nums.size(); i++){
+    sum = sum.add(nums.get(i));
+  }
+  return sum.div(new Num(nums.size()));
+}
