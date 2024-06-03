@@ -64,6 +64,7 @@ public class GraphModule extends Module{
     
     text("n = "+values.size(), this.pos.x-55, this.pos.y-45);
     drawAttachments(COLOR_READER);
+    stroke(COLOR_READER);
     if (min != null && max != null && values.size() > 0){
       for (int i=0; i<values.size(); i++){
         circle(xPos(i, values.size()), yPos(values.get(i)), 2);
@@ -111,6 +112,9 @@ public class GraphModule extends Module{
     double MARGIN = 5;
     double MIN = -40+MARGIN;
     double MAX = 65-MARGIN; 
+    if (max-min == 0){
+      return this.pos.y+(float)(MIN + MAX)/2;
+    }
     return (float)(this.pos.y+MAX - (MAX-MIN)*((y.getValue()-min)/(max-min)));
   }
   
