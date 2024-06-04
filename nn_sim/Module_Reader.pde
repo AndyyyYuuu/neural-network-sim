@@ -4,6 +4,7 @@ public class ReaderModule extends Module{
     super(pos);
     inputs.add(new InputPort(this, vec(-25, 0)));
     name = "Number Reader";
+    shortDesc = "Reads the output of a module";
   }
   
   public void draw(){
@@ -43,6 +44,7 @@ public class GraphModule extends Module{
     super(pos);
     inputs.add(new InputPort(this, vec(-65, -70)));
     name = "Line Graph";
+    shortDesc = "Graphs a module's output over time";
     buttons.add(new Button(new PVector(50, -65), new PVector(20, 20), ICON_DELETE, this));
     
     println(min, max);

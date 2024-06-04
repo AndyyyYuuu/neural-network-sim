@@ -30,6 +30,8 @@ GraphModule graphModule;
 Module[] moduleTypes;
 MenuFolder[] menuFolders;
 
+int mouseStill = 0;
+
 int START = 0;
 int PLAY = 1;
 int mode = PLAY;
@@ -141,6 +143,11 @@ void mouseReleased(){
 
 void draw(){
   background(0);
+  if (abs(pmouseX-mouseX) <= 1 && abs(pmouseY-mouseY) <= 1){
+    mouseStill ++;
+  }else{
+    mouseStill = 0;
+  }
   if (mode == PLAY){
     strokeWeight(5);
     stroke(255);

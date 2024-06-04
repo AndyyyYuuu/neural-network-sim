@@ -42,6 +42,7 @@ public class MultModule extends BinaryOpModule{
   public MultModule(PVector pos){
     super(pos);
     name = "Multiplication";
+    shortDesc = "Multiplies two numbers";
   }
   
   public void draw(){
@@ -67,6 +68,7 @@ public class AddModule extends BinaryOpModule{
   public AddModule(PVector pos){
     super(pos);
     name = "Addition";
+    shortDesc = "Adds two numbers";
   }
   
   public void draw(){
@@ -102,6 +104,7 @@ public class TanhModule extends UnaryOpModule{
   public TanhModule(PVector pos){
     super(pos);
     name = "Hyperbolic Tangent";
+    shortDesc = "Sigmoid with outputs between -1 and 1";
   }
   
   public void draw(){
@@ -130,6 +133,7 @@ public class SinModule extends UnaryOpModule{
   public SinModule(PVector pos){
     super(pos);
     name = "Trigonometric Sine";
+    shortDesc = "Periodic trigonometric function";
   }
   
   public void draw(){
@@ -160,6 +164,7 @@ public class NeuronModule extends OpModule{
     output = new OutputPort(this, new PVector(35, 0));
     bias.makeParam();
     name = "Linear Neuron";
+    shortDesc = "Neuron complete with weights and biases";
   }
   
   public boolean mouseIsIn(){

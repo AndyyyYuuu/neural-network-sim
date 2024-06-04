@@ -1,5 +1,5 @@
 float MENU_X = 50;
-float MENU_ITEM_H = 40;
+float MENU_ITEM_H = 45;
 float MENU_FOLDER_H = 30;
 public class MenuFolder{
   private Module[] contents;
@@ -11,6 +11,7 @@ public class MenuFolder{
     this.contents = contents;
     this.c = c;
     this.name = name;
+    ICON_HELP.load();
   }
   
   public float draw(float startY){
@@ -26,7 +27,7 @@ public class MenuFolder{
     textSize(14);
     text(name, MENU_X+5, startY+18);
     if (isOpen){
-      ICON_OPEN.draw(MENU_X+184, startY+12.5, c, 20);
+      ICON_OPEN.draw(MENU_X+184, startY+12.5, c, 18);
       float x = MENU_X + 20;
       for (int i=0; i<contents.length; i++){
         
@@ -36,7 +37,28 @@ public class MenuFolder{
         rect(x, y, 200, MENU_ITEM_H - 5);
         fill(c);
         textSize(12);
-        text(contents[i].name, x + 5, y + 15);
+        text(contents[i].name, x + 5, y + 20);
+        textSize(8);
+        text(contents[i].shortDesc, x + 5, y + 35);
+        ICON_HELP.draw(x+189, y+12, c, 20);
+        
+        if (mouseStill > 30 && mouseInRect(x+179, y+2, 20, 20)){
+          fill(0);
+          
+          pushMatrix();
+          translate(x+210, min(mouseY, height-310));
+          rect(0, 0, 200, 300);
+          fill(c);
+          textSize(16);
+          text(contents[i].name, 5, 20);
+          textSize(10);
+          for (int l = 0; l < contents[i].longDesc.length; l++){
+            String line = contents[i].longDesc[l];
+            text(line, 5, 50+l*16);
+          }
+          
+          popMatrix();
+        }
         
         // Fancy folder lines
         if (i == contents.length-1){

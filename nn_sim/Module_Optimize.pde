@@ -9,7 +9,8 @@ public class OptimModule extends Module{
     buttons.add(new Button(new PVector(-10, -30), new PVector(20, 20), ICON_DESCEND, this));
     buttons.add(new Button(new PVector(20, -30), new PVector(20, 20), ICON_ZERO, this));
     sliders.add(new Slider(new PVector(-40, 20), 80, 0.3, this));
-    name = "Gradient Descent Optimizer";
+    name = "Descent Optimizer";
+    shortDesc = "Optimizes parameters based on input loss";
   }
   
   public void draw(){

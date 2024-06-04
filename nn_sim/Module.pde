@@ -13,7 +13,11 @@ public abstract class Module{
   public ArrayList<InputPort> inputs = new ArrayList<InputPort>();
   public OutputPort output;
   
-  public String name;
+  public String name = "???";
+  public String shortDesc = "???";
+  public String[] longDesc = new String[]{
+    "???"
+  };
   
   public Num outputNum = new Num(0);
   

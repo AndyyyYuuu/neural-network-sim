@@ -15,7 +15,8 @@ public class NumModule extends InputModule{
   public NumModule(PVector pos, double num){
     super(pos);
     output = new OutputPort(this, vec(30, 0));
-    name = "Constant Number: "+num;
+    name = "Constant: "+num;
+    shortDesc = "Outputs the number "+num+" constantly";
     outputNum = new Num(num);
   }
   
@@ -86,6 +87,7 @@ public class ParamModule extends NumModule{
     super(pos, 0);
     this.outputNum.makeParam();
     name = "Optimizable Parameter";
+    shortDesc = "A value changeable by the optimizer";
   }
   
   public void draw(){
@@ -130,6 +132,12 @@ public class DataModule extends InputModule{
     x2.setNum(data.getTrain().inputs[1]);
     y.setNum(data.getTrain().output);
     name = "Dataset Loader";
+    shortDesc = "Loads a dataset by input-output pairs";
+    longDesc = new String[]{
+      "Iterates through new data. Data",
+      "is loaded with two inputs (x)",
+      "and one expected output (ŷ). "
+    };
   }
   
   public void draw(){

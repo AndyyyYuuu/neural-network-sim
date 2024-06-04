@@ -15,6 +15,7 @@ public class MeanModule extends Module{
     
     output = new OutputPort(this, new PVector(55, 5));
     name = "Cumulative Mean";
+    shortDesc = "Takes the mean of "+batchSize+" values";
   }
   
   public void draw(){
@@ -111,6 +112,7 @@ public class LossModule extends MeanModule{
     
     funcName = "μ²";
     name = "MSE Loss Function";
+    shortDesc = "Compares "+batchSize+" predicted outputs to truth";
   }
   
   public void draw(){
