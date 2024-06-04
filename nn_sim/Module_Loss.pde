@@ -43,7 +43,6 @@ public class MeanModule extends Module{
   
   public void update(){
     if (hasAllInputs()){
-      println(inputY.size(),this.batchSize);
       if (inputY.size() < this.batchSize){
         
         if (buttons.get(0).isOn()){

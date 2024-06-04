@@ -32,7 +32,6 @@ class Connector{
         this.port1 = this.port2;
         this.port2 = temp;
       }
-      println(port1.connectors.size(), port2.connectors.size());
       
       return true;
     }else{

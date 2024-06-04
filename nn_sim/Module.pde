@@ -134,7 +134,6 @@ public abstract class Module{
     }
     
     if (output != null){
-      println(output.connectors.size());
       for (int i=0; i<output.connectors.size(); i++){
         output.connectors.get(i).delete();
       }
