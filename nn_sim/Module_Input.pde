@@ -91,7 +91,7 @@ public class DataValueModule extends NumModule{
 
 public class ParamModule extends NumModule{
   public ParamModule(PVector pos){
-    super(pos, 0);
+    super(pos, randomGaussian());
     this.outputNum.makeParam();
     name = "Optimizable Parameter";
     shortDesc = "A value changeable by the optimizer";
@@ -104,7 +104,10 @@ public class ParamModule extends NumModule{
       "If this module is part of a",
       "graph that feeds into an",
       "optimizer, it will be optimized",
-      "by it."
+      "by it.",
+      "",
+      "Initial values are randomized",
+      "following a normal distribution."
       
     };
   }
