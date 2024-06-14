@@ -43,6 +43,10 @@ public class MultModule extends BinaryOpModule{
     super(pos);
     name = "Multiplication";
     shortDesc = "Multiplies two numbers";
+    longDesc = new String[]{
+      "Given two numerical inputs,",
+      "outputs their product."
+    };
   }
   
   public void draw(){
@@ -69,6 +73,10 @@ public class AddModule extends BinaryOpModule{
     super(pos);
     name = "Addition";
     shortDesc = "Adds two numbers";
+    longDesc = new String[]{
+      "Given two numerical inputs,",
+      "outputs their sum."
+    };
   }
   
   public void draw(){
@@ -105,6 +113,17 @@ public class TanhModule extends UnaryOpModule{
     super(pos);
     name = "Hyperbolic Tangent";
     shortDesc = "Sigmoid with outputs between -1 and 1";
+    longDesc = new String[]{
+      "Given one numerical input,",
+      "outputs its tanh().",
+      "",
+      "The tanh is an S-shaped function",
+      "that takes any real number as",
+      "input and outputs a value",
+      "between -1 and 1.",
+      "",
+      "tanh(x) = (e^x-e^-x)/(e^x+e^-x)"
+    };
   }
   
   public void draw(){
@@ -134,6 +153,15 @@ public class SinModule extends UnaryOpModule{
     super(pos);
     name = "Trigonometric Sine";
     shortDesc = "Periodic trigonometric function";
+    longDesc = new String[]{
+      "Given one numerical input,",
+      "outputs its sine.",
+      "",
+      "The sinusoidal is a repeating",
+      "function that takes any number",
+      "as input and outputs a value",
+      "between -1 and 1."
+    };
   }
   
   public void draw(){
@@ -165,6 +193,22 @@ public class NeuronModule extends OpModule{
     bias.makeParam();
     name = "Linear Neuron";
     shortDesc = "Neuron complete with weights and biases";
+    longDesc = new String[]{
+      "Given multiple numerical,",
+      "inputs, outputs the result",
+      "of a linear fully-connected",
+      "neuron.",
+      "",
+      "The neuron takes multiple",
+      "inputs, multiplies a weight",
+      "for each one, sums them, and",
+      "adds a bias. Weights and",
+      "biases are optimizable",
+      "parameters.",
+      "",
+      "  N({x₀, x₁ ... xn})",
+      "= Σ(xi × wi) + bi",
+    };
   }
   
   public boolean mouseIsIn(){

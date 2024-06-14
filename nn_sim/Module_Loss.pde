@@ -16,6 +16,11 @@ public class MeanModule extends Module{
     output = new OutputPort(this, new PVector(55, 5));
     name = "Cumulative Mean";
     shortDesc = "Takes the mean of "+batchSize+" values";
+    longDesc = new String[]{
+      "Given a value as input, ",
+      "cumulatively takes the mean of",
+      "the values across " + batchSize + " input runs."
+    };
   }
   
   public void draw(){
@@ -113,6 +118,19 @@ public class LossModule extends MeanModule{
     funcName = "μ²";
     name = "MSE Loss Function";
     shortDesc = "Compares "+batchSize+" predicted outputs to truth";
+    longDesc = new String[]{
+      "Given predicted values and",
+      "expected values, outputs the",
+      "mean-squared error loss across",
+      ""+batchSize+" input runs.",
+      "",
+      "The mean-squared error computes",
+      "a value for the difference",
+      "of predicted values from true",
+      "values. Feed its output to",
+      "an optimizer to optimize a",
+      "neural network."
+    };
   }
   
   public void draw(){

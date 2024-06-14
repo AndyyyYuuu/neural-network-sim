@@ -17,7 +17,14 @@ public class NumModule extends InputModule{
     output = new OutputPort(this, vec(30, 0));
     name = "Constant: "+num;
     shortDesc = "Outputs the number "+num+" constantly";
+    longDesc = new String[]{
+      "Outputs the number "+num+".",
+      "",
+      "Connect this output to another",
+      "module to input the number."
+    };
     outputNum = new Num(num);
+    
   }
   
   public void setNum(double num){
@@ -88,6 +95,18 @@ public class ParamModule extends NumModule{
     this.outputNum.makeParam();
     name = "Optimizable Parameter";
     shortDesc = "A value changeable by the optimizer";
+    longDesc = new String[]{
+      "Outputs the number.",
+      "",
+      "Connect this output to another",
+      "module to input the number.",
+      "",
+      "If this module is part of a",
+      "graph that feeds into an",
+      "optimizer, it will be optimized",
+      "by it."
+      
+    };
   }
   
   public void draw(){

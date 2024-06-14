@@ -36,7 +36,7 @@ public class MenuFolder{
         fill(0);
         rect(x, y, 200, MENU_ITEM_H - 5);
         fill(c);
-        textSize(12);
+        textSize(13);
         text(contents[i].name, x + 5, y + 20);
         textSize(8);
         text(contents[i].shortDesc, x + 5, y + 35);
@@ -46,10 +46,10 @@ public class MenuFolder{
           fill(0);
           
           pushMatrix();
-          translate(x+210, min(mouseY, height-310));
-          rect(0, 0, 200, 300);
+          translate(x+210, min(mouseY, height-(55+contents[i].longDesc.length*16)));
+          rect(0, 0, 200, 50+contents[i].longDesc.length*16);
           fill(c);
-          textSize(16);
+          textSize(15);
           text(contents[i].name, 5, 20);
           textSize(10);
           for (int l = 0; l < contents[i].longDesc.length; l++){

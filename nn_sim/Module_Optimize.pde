@@ -11,6 +11,22 @@ public class OptimModule extends Module{
     sliders.add(new Slider(new PVector(-40, 20), 80, 0.3, this));
     name = "Descent Optimizer";
     shortDesc = "Optimizes parameters based on input loss";
+    longDesc = new String[]{
+      "Given a loss as an input, ",
+      "optimizes the neural network",
+      "through gradient descent to",
+      "minimize the loss.",
+      "",
+      "Press the \"backwards\" button",
+      "to backpropagate and calculate",
+      "the gradient for each parameter.",
+      "Press the \"descend\" button",
+      "to adjust the parameters.",
+      "",
+      "The step size slider can be used",
+      "to tune the speed of the",
+      "parameter adjustments."
+    };
   }
   
   public void draw(){
