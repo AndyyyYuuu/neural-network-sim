@@ -1,6 +1,8 @@
 float MENU_X = 50;
 float MENU_ITEM_H = 45;
 float MENU_FOLDER_H = 30;
+
+// An expandable category in the menu
 public class MenuFolder{
   private Module[] contents;
   private color c;
@@ -42,6 +44,7 @@ public class MenuFolder{
         text(contents[i].shortDesc, x + 5, y + 35);
         ICON_HELP.draw(x+189, y+12, c, 20);
         
+        // Display long description
         if (mouseStill > 30 && mouseInRect(x+179, y+2, 20, 20)){
           fill(0);
           
@@ -60,7 +63,7 @@ public class MenuFolder{
           popMatrix();
         }
         
-        // Fancy folder lines
+        // Draw fancy folder lines
         if (i == contents.length-1){
           line(MENU_X + 5, y, MENU_X + 5, y+MENU_ITEM_H/2);
         }else{
@@ -70,7 +73,7 @@ public class MenuFolder{
         
         
       }
-      return 35 + contents.length*MENU_ITEM_H;
+      return 35 + contents.length*MENU_ITEM_H; // Returns the Y coordinate that the menu below should start at
     }else{
       ICON_CLOSED.draw(MENU_X+184, startY+12.5, c, 20);
       return 35;

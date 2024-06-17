@@ -51,8 +51,7 @@ public class OptimModule extends Module{
     text(processDouble(stepSize, 7, false), this.pos.x-10, this.pos.y+10);
     
     drawAttachments(COLOR_OPTIM);
-    
-    
+
   }
   
   public void update(){

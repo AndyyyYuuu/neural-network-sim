@@ -1,7 +1,36 @@
 
+// Function wrapper
 interface Function{
   public void run();
 }
+
+// Shortened `new PVector()`
+public PVector vec(float x, float y){
+  return new PVector(x, y);
+}
+
+// Double to string processors
+public String processDouble(double n){
+  return processDouble(n, 6, true);
+}
+
+public String processDouble(double n, int chars, boolean alwaysShowSign){
+  
+  String result = doubleToString(Math.round(n * Math.pow(10, chars-2))/Math.pow(10, chars-2));
+  if (n >= 0){
+    result = (alwaysShowSign?"+":"") + result;
+  }
+  if (result.length() > chars){
+    result = result.substring(0, chars);
+  }
+  //return result.substring(0, chars).replace(" ", "0");
+  return String.format("%-"+chars+"s", result).replace(" ", "0");
+}
+
+public String doubleToString(double n){
+  return String.format("%.9f", n);
+}
+
 
 public String numArrToStr(Num[] arr){
   String result = "[ ";
@@ -42,12 +71,47 @@ private static void topologicalSortUtil(Num node, Set<Num> visited, Stack<Num> s
     stack.push(node);
 }
 
+
 public List<Num> reversed(List<Num> l){
   List<Num> result = new ArrayList<Num>();
   for (Num n : l){
     result.add(0, n);
   }
   return result;
+}
+
+
+// Mathematical functions
+public Num meanSquaredError(ArrayList<Num> yPred, ArrayList<Num> y){
+  if (yPred.size() != y.size()){
+    println(CATASTROPHIC_LETHAL_ERROR_MESSAGE);
+    exit();
+  }
+  Num sum = new Num(0);
+  for (int i=0; i<yPred.size(); i++){
+    sum = sum.add((yPred.get(i).sub(y.get(i))).pow(2));
+  }
+  return sum.div(new Num(yPred.size()));
+}
+
+public Num mean(ArrayList<Num> nums){
+  Num sum = new Num(0);
+  for (int i=0; i<nums.size(); i++){
+    sum = sum.add(nums.get(i));
+  }
+  return sum.div(new Num(nums.size()));
+}
+
+
+// ArrayList utilities
+public <T> boolean removeItem(ArrayList<T> arr, T item){
+  for (int i=0; i<arr.size(); i++){
+    if (item == arr.get(i)){
+      arr.remove(i);
+      return true;
+    }
+  }
+  return false;
 }
 
 public Num sum(ArrayList<Num> nums){
@@ -58,6 +122,17 @@ public Num sum(ArrayList<Num> nums){
   return result;
 }
 
+
+public boolean posInRect(float x, float y, float rx, float ry, float rw, float rh){
+  return x > rx && x < rx+rw && y > ry && y < ry+rh;
+}
+
+public boolean mouseInRect(float x, float y, float w, float h){
+  return mouseX > x && mouseX < x+w && mouseY > y && mouseY < y+h;
+}
+
+
+// Lines
 public void flowingLine(float x1, float y1, float x2, float y2){
   float speed = 3; // Lower number --> more speed
   dottedLine(x1, y1, x2, y2, (((float)frameCount/20)%speed)/dist(x1, y1, x2, y2)*20/speed);
@@ -90,69 +165,4 @@ public void dottedLine(float x1, float y1, float x2, float y2, float start){
     }
     drawLine = !drawLine;
   }
-}
-
-public boolean posInRect(float x, float y, float rx, float ry, float rw, float rh){
-  return x > rx && x < rx+rw && y > ry && y < ry+rh;
-}
-
-public boolean mouseInRect(float x, float y, float w, float h){
-  return mouseX > x && mouseX < x+w && mouseY > y && mouseY < y+h;
-}
-
-public String processDouble(double n){
-  return processDouble(n, 6, true);
-}
-
-public String processDouble(double n, int chars, boolean alwaysShowSign){
-  
-  String result = doubleToString(Math.round(n * Math.pow(10, chars-2))/Math.pow(10, chars-2));
-  if (n >= 0){
-    result = (alwaysShowSign?"+":"") + result;
-  }
-  if (result.length() > chars){
-    result = result.substring(0, chars);
-  }
-  //return result.substring(0, chars).replace(" ", "0");
-  return String.format("%-"+chars+"s", result).replace(" ", "0");
-}
-
-public String doubleToString(double n){
-  return String.format("%.9f", n);
-}
-
-
-// Shortened `new PVector()`
-public PVector vec(float x, float y){
-  return new PVector(x, y);
-}
-
-public Num meanSquaredError(ArrayList<Num> yPred, ArrayList<Num> y){
-  if (yPred.size() != y.size()){
-    println(CATASTROPHIC_LETHAL_ERROR_MESSAGE);
-    exit();
-  }
-  Num sum = new Num(0);
-  for (int i=0; i<yPred.size(); i++){
-    sum = sum.add((yPred.get(i).sub(y.get(i))).pow(2));
-  }
-  return sum.div(new Num(yPred.size()));
-}
-
-public Num mean(ArrayList<Num> nums){
-  Num sum = new Num(0);
-  for (int i=0; i<nums.size(); i++){
-    sum = sum.add(nums.get(i));
-  }
-  return sum.div(new Num(nums.size()));
-}
-
-public <T> boolean removeItem(ArrayList<T> arr, T item){
-  for (int i=0; i<arr.size(); i++){
-    if (item == arr.get(i)){
-      arr.remove(i);
-      return true;
-    }
-  }
-  return false;
 }

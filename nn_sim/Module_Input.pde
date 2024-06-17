@@ -1,13 +1,7 @@
 // InputModule: includes all modules with only outputs
 public abstract class InputModule extends Module{
-  
   public InputModule(PVector pos){
-    
     super(pos);
-    
-  }
-  
-  public InputModule(){
   }
 }
 
@@ -128,9 +122,7 @@ public class ParamModule extends NumModule{
   
   public Module createNew(PVector pos){
     return new ParamModule(pos);
-    
   }
-  
 }
 
 
@@ -198,7 +190,6 @@ public class DataModule extends InputModule{
   }
   
   public Num _forward(){
-    
     return new Num(1);
   }
   

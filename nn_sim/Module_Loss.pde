@@ -100,7 +100,6 @@ public class MeanModule extends Module{
   }
   
   public void clearStorage(){
-    
     inputY.clear();
   }
 }

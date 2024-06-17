@@ -11,6 +11,7 @@ public abstract class Port{
     ports.add(this);
   }
   
+  // Get all ports opposite to this port across connectors
   public ArrayList<Port> getOtherEnds(){
     ArrayList<Port> ends = new ArrayList<Port>();
     for (Connector c : this.connectors){
@@ -21,6 +22,7 @@ public abstract class Port{
     return ends;
   }
   
+  // Get the port opposite to this port across a connector
   public Port getOtherEnd(){
     if (this.getOtherEnds().size() == 0){
       return null;
@@ -28,6 +30,7 @@ public abstract class Port{
     return this.getOtherEnds().get(0);
   }
   
+  // Absolute coordinates (on screen)
   public float getAbsX(){
     return pos.x + parent.pos.x;
   }
@@ -36,6 +39,7 @@ public abstract class Port{
     return pos.y + parent.pos.y;
   }
   
+  // Coordinates relative to parent module
   public float getRelX(){
     return pos.x;
   }
@@ -59,14 +63,15 @@ public abstract class Port{
 
 }
 
+// Circular input port
 public class InputPort extends Port{
-  
   public InputPort(Module parent, PVector pos){
     super(parent, pos);
     isInput = true;
   }
 }
 
+// Triangular output port
 public class OutputPort extends Port{
   public OutputPort(Module parent, PVector pos){
     super(parent, pos);

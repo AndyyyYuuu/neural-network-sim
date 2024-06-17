@@ -1,12 +1,11 @@
 // OpModule: includes all modules with input(s) and output(s)
 public abstract class OpModule extends Module{
-  
   public OpModule(PVector pos){
     super(pos);
-    
   }
-  
 }
+
+
 
 public abstract class BasicOpModule extends OpModule{
   public abstract Module createNew(PVector pos);
@@ -27,6 +26,8 @@ public abstract class BasicOpModule extends OpModule{
   }
 }
 
+
+
 public abstract class BinaryOpModule extends BasicOpModule{
   public abstract Module createNew(PVector pos);
   
@@ -36,6 +37,8 @@ public abstract class BinaryOpModule extends BasicOpModule{
     inputs.add(new InputPort(this, new PVector(-15, 10)));
   }
 }
+
+
 
 public class MultModule extends BinaryOpModule{
 
@@ -68,6 +71,8 @@ public class MultModule extends BinaryOpModule{
   
 }
 
+
+
 public class AddModule extends BinaryOpModule{
   public AddModule(PVector pos){
     super(pos);
@@ -98,17 +103,17 @@ public class AddModule extends BinaryOpModule{
   
 }
 
-public abstract class UnaryOpModule extends BasicOpModule{
-  //public abstract Module createNew();
 
+
+public abstract class UnaryOpModule extends BasicOpModule{
   public UnaryOpModule(PVector pos){
     super(pos);
     inputs.add(new InputPort(this, new PVector(-15, 0)));
   }
 }
 
+
 public class TanhModule extends UnaryOpModule{
-  
   public TanhModule(PVector pos){
     super(pos);
     name = "Hyperbolic Tangent";
@@ -139,12 +144,11 @@ public class TanhModule extends UnaryOpModule{
     return this.outputNum;
   }
   
-  
-  
   public Module createNew(PVector pos){
     return new TanhModule(pos);
   }
 }
+
 
 
 public class SinModule extends UnaryOpModule{
@@ -237,7 +241,7 @@ public class NeuronModule extends OpModule{
     for (int i=0; i<weights.size(); i++){
       sum = sum.add(getInput(i).forward().mult(weights.get(i)));
     }
-    this.outputNum = sum.add(bias); //.tanh();
+    this.outputNum = sum.add(bias); 
     return this.outputNum;
   }
   

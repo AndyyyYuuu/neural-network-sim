@@ -1,6 +1,7 @@
-// Autograd algorithm (Python) originally by: Andrej Karpathy
-// Translated to Java Processing by: me
-
+/* Object-oriented autograd algorithm
+ * originally written in Python by Andrej Karpathy.
+ * Translated to Java Processing by: me
+ */
 
 public class Num{
   private double value;
@@ -20,7 +21,6 @@ public class Num{
   
   public Num(double value){
     this.value = value; 
-    
   }
   
   public void makeParam(){
@@ -102,6 +102,8 @@ public class Num{
   
   public void backward(){
     this.grad = 1.0; 
+    
+    // Backpropagates all previous nodes in order of depth
     for (Num node: (topologicalSort(this))){
       node.backward.run();
     }
@@ -115,11 +117,10 @@ public class Num{
   }
   
   public void descend(double stepSize){
-    
+    // Gradient descent on all nodes
     for (Num node: (topologicalSort(this))){
       node._descend(stepSize);
     }
-    
   }
   
   public void _zeroGrad(){
@@ -127,11 +128,9 @@ public class Num{
   }
   
   public void zeroGrad(){
-    
     for (Num node: (topologicalSort(this))){
       node._zeroGrad();
     }
-    
   }
   
   public String toString(){

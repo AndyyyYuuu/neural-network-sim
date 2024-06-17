@@ -9,13 +9,12 @@ Icon ICON_CLOSED = new Icon("icon/folder_closed.png");
 Icon ICON_DELETE = new Icon("icon/delete.png");
 Icon ICON_HELP = new Icon("icon/help.png");
 
+// Icon object for buttons and such
 public class Icon{
   PImage img;
   String path;
   public Icon(String path){
     this.path = path;
-    
-    
   }
   
   public void load(){
@@ -32,7 +31,6 @@ public class Icon{
     tint(c, 255);
     imageMode(CENTER);
     image(img, x, y, size, size);
-    
     
     popMatrix();
     

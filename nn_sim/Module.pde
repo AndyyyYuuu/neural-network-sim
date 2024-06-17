@@ -21,7 +21,8 @@ public abstract class Module{
   
   public Num outputNum = new Num(0);
   
-  public Module(){
+  public Module(PVector pos){
+    this.pos = pos;
   }
   
   public Module getInput(int idx){
@@ -66,17 +67,6 @@ public abstract class Module{
         }
       }
     }
-    /*
-    if (output != null && output.getOtherEnd() != null){
-      Module outModule = output.getOtherEnd().parent;
-      if (outModule instanceof GraphModule){
-        ((GraphModule)outModule).addValue(forward().getValue());
-      }
-    }*/
-  }
-  
-  public Module(PVector pos){
-    this.pos = pos;
   }
   
   public Num forward(){

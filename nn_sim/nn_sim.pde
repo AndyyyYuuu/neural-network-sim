@@ -11,6 +11,7 @@ ArrayList<Slider> sliders = new ArrayList<Slider>();
 Module grabbedModule;
 Connector grabbedConnector;
 Dataset circleData = new CircleDataset(80, 20);
+
 // Pretend static methods (screw Processing for not having static methods) that also serve as the buttons
 AddModule addModule;
 MultModule multModule;
@@ -38,7 +39,6 @@ int mode = PLAY;
 
 void setup(){
   size(1400, 720);
-  //fullScreen();
   pixelDensity(2);
   font = createFont("font/JetBrainsMono-VariableFont_wght.ttf", 32);
   textFont(font);
@@ -65,6 +65,7 @@ void setup(){
   graphModule = new GraphModule(new PVector(0, 0));
   meanModule = new MeanModule(new PVector(0, 0), 80);
   
+  // Initialize menu items
   menuFolders = new MenuFolder[]{
     new MenuFolder("Simple Operations", new Module[]{addModule, multModule, sinModule, tanhModule}, COLOR_OP),
     new MenuFolder("Advanced Operations", new Module[]{neuronModule, meanModule, lossModule}, COLOR_NEURAL),
@@ -143,11 +144,14 @@ void mouseReleased(){
 
 void draw(){
   background(0);
+  
+  // Check how long the mouse has held still for. Useful for hover long descriptions.
   if (abs(pmouseX-mouseX) <= 1 && abs(pmouseY-mouseY) <= 1){
     mouseStill ++;
   }else{
     mouseStill = 0;
   }
+  
   if (mode == PLAY){
     strokeWeight(5);
     stroke(255);
@@ -157,6 +161,8 @@ void draw(){
     for (int i=0; i<modules.size(); i++){
       Module m = modules.get(i);
       m.show();
+      
+      // Delete out-of-bounds modules
       if (!posInRect(m.pos.x, m.pos.y, 300, 50, width-300-50, height-50-50) && m != grabbedModule){
         m.delete();
         modules.remove(i);
