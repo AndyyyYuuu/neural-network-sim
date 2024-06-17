@@ -1,5 +1,11 @@
 
-public class ReaderModule extends Module{
+public abstract class ReadOnlyModule extends Module{
+  public ReadOnlyModule(PVector pos){
+    super(pos);
+  }
+}
+
+public class ReaderModule extends ReadOnlyModule{
   public ReaderModule(PVector pos){
     super(pos);
     inputs.add(new InputPort(this, vec(-25, 0)));
@@ -40,7 +46,7 @@ public class ReaderModule extends Module{
 
 
 
-public class GraphModule extends Module{
+public class GraphModule extends ReadOnlyModule{
   ArrayList<Num> values = new ArrayList<Num>();
   Double min = null;
   Double max = null;

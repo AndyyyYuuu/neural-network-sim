@@ -8,10 +8,12 @@ class Connector{
   
   public void show(){
     
+    // Read-only module lines show up gray
     stroke(255);
-    if (port2 != null && port2.parent instanceof ReaderModule){
-      stroke(255/2);
+    if (port2 != null && port2.parent instanceof ReadOnlyModule){
+      stroke(COLOR_READER);
     }
+    
     strokeWeight(3);
     
     if (this.port2 == null){ // Port2 not decided: connector is being grabbed
