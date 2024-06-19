@@ -15,6 +15,7 @@ Dataset circleData = new CircleDataset(80, 20);
 // Pretend static methods (screw Processing for not having static methods) that also serve as the buttons
 AddModule addModule;
 MultModule multModule;
+ReciprocalModule reciprocalModule;
 TanhModule tanhModule;
 SinModule sinModule;
 NeuronModule neuronModule;
@@ -51,6 +52,7 @@ void setup(){
   // Pretend static methods (screw Processing for not having static methods) that also serve as the buttons
   addModule = new AddModule(new PVector(60, 30));
   multModule = new MultModule(new PVector(120, 30));
+  reciprocalModule = new ReciprocalModule(new PVector(0, 0));
   tanhModule = new TanhModule(new PVector(180, 30));
   sinModule = new SinModule(new PVector(240, 30));
   paramModule = new ParamModule(new PVector(350, 30));
@@ -67,7 +69,7 @@ void setup(){
   
   // Initialize menu items
   menuFolders = new MenuFolder[]{
-    new MenuFolder("Simple Operations", new Module[]{addModule, multModule, sinModule, tanhModule}, COLOR_OP),
+    new MenuFolder("Simple Operations", new Module[]{addModule, multModule, reciprocalModule, sinModule, tanhModule}, COLOR_OP),
     new MenuFolder("Advanced Operations", new Module[]{neuronModule, meanModule, lossModule}, COLOR_NEURAL),
     new MenuFolder("Data Sources", new Module[]{dataModule, zeroNumModule, oneNumModule, nOneNumModule}, COLOR_DATA),
     new MenuFolder("Optimization", new Module[]{optimModule, paramModule}, COLOR_OPTIM),

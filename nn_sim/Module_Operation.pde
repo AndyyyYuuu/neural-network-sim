@@ -187,6 +187,41 @@ public class SinModule extends UnaryOpModule{
 }
 
 
+public class ReciprocalModule extends UnaryOpModule{
+  
+  public ReciprocalModule(PVector pos){
+    super(pos);
+    name = "Reciprocal";
+    shortDesc = "Raise input to the -1 power";
+    longDesc = new String[]{
+      "Given one numerical input,",
+      "outputs its reciprocal.",
+      "",
+      "The reciprocal of an input",
+      "is obtained by dividing 1 by",
+      "that number."
+    };
+  }
+  
+  public void draw(){
+    super.draw();
+    fill(COLOR_OP);
+    textSize(14);
+    textAlign(CENTER);
+    text("1/", this.pos.x+2, this.pos.y+6);
+  }
+  
+  public Num _forward(){
+    this.outputNum = getInput(0).forward().pow(-1);
+    return this.outputNum;
+  }
+
+  public Module createNew(PVector pos){
+    return new ReciprocalModule(pos);
+  }
+}
+
+
 public class NeuronModule extends OpModule{
   public ArrayList<Num> weights = new ArrayList<Num>();
   public Num bias = new Num(0);
