@@ -11,6 +11,9 @@ public abstract class Port{
     ports.add(this);
   }
   
+  public abstract boolean canConnect();
+  public abstract void draw();
+  
   // Get all ports opposite to this port across connectors
   public ArrayList<Port> getOtherEnds(){
     ArrayList<Port> ends = new ArrayList<Port>();
@@ -65,9 +68,28 @@ public abstract class Port{
 
 // Circular input port
 public class InputPort extends Port{
-  public InputPort(Module parent, PVector pos){
+  public boolean multi;
+  public InputPort(Module parent, PVector pos, boolean multi){
     super(parent, pos);
-    isInput = true;
+    this.isInput = true;
+    this.multi = multi;
+  }
+  
+  public InputPort(Module parent, PVector pos){
+    this(parent, pos, false);
+    
+  }
+  
+  public boolean canConnect(){
+    return multi || connectors.size() == 0;
+  }
+  
+  public void draw(){
+    if (multi){
+      ellipse(getAbsX(), getAbsY(), 10, 15);
+    }else{
+      circle(getAbsX(), getAbsY(), 10);
+    }
   }
 }
 
@@ -76,5 +98,16 @@ public class OutputPort extends Port{
   public OutputPort(Module parent, PVector pos){
     super(parent, pos);
     isInput = false;
+  }
+  
+  public boolean canConnect(){
+    return true;
+  }
+  
+  public void draw(){
+    pushMatrix();
+    translate(getAbsX(), getAbsY());
+    triangle(-4, 6, -4, -6, 4, 0);
+    popMatrix();
   }
 }

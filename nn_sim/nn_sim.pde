@@ -100,7 +100,7 @@ void mousePressed(){
     }
     
     for (int i=0; i<ports.size(); i++){
-      if (ports.get(i).mouseIsIn()){
+      if (ports.get(i).mouseIsIn() && ports.get(i).canConnect()){
         if (grabbedConnector != null){
           if (grabbedConnector.connect(ports.get(i))){
             connectors.add(grabbedConnector);

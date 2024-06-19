@@ -102,14 +102,10 @@ public abstract class Module{
   public void drawAttachments(color c){
     fill(0);
     for (int i=0; i<this.inputs.size(); i++){
-      Port aPort = this.inputs.get(i);
-      circle(aPort.getAbsX(), aPort.getAbsY(), 10);
+      this.inputs.get(i).draw();
     }
     if (output != null){
-      pushMatrix();
-      translate(output.getAbsX(), output.getAbsY());
-      triangle(-4, 6, -4, -6, 4, 0);
-      popMatrix();
+      output.draw();
     }
     
     for (Button b: this.buttons){
