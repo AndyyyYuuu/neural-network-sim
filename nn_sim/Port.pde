@@ -68,28 +68,34 @@ public abstract class Port{
 
 // Circular input port
 public class InputPort extends Port{
-  public boolean multi;
-  public InputPort(Module parent, PVector pos, boolean multi){
-    super(parent, pos);
-    this.isInput = true;
-    this.multi = multi;
-  }
   
   public InputPort(Module parent, PVector pos){
-    this(parent, pos, false);
+    super(parent, pos);
+    this.isInput = true;
     
   }
   
   public boolean canConnect(){
-    return multi || connectors.size() == 0;
+    return connectors.size() == 0;
   }
   
   public void draw(){
-    if (multi){
-      ellipse(getAbsX(), getAbsY(), 10, 15);
-    }else{
-      circle(getAbsX(), getAbsY(), 10);
-    }
+    circle(getAbsX(), getAbsY(), 10);
+  }
+}
+
+public class MultiInputPort extends InputPort{
+  public MultiInputPort(Module parent, PVector pos){
+    super(parent, pos);
+    this.isInput = true;
+  }
+  
+  public boolean canConnect(){
+    return true;
+  }
+  
+  public void draw(){
+    ellipse(getAbsX(), getAbsY(), 10, 15);
   }
 }
 

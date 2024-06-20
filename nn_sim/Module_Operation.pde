@@ -197,9 +197,9 @@ public class ReciprocalModule extends UnaryOpModule{
       "Given one numerical input,",
       "outputs its reciprocal.",
       "",
-      "The reciprocal of an input",
-      "is obtained by dividing 1 by",
-      "that number."
+      "The reciprocal of an input is",
+      "obtained by dividing 1 by that",
+      "number."
     };
   }
   
@@ -227,7 +227,7 @@ public class NeuronModule extends OpModule{
   public Num bias = new Num(0);
   public NeuronModule(PVector pos){
     super(pos);
-    inputs.add(new InputPort(this, new PVector(-25, 0), true));
+    inputs.add(new MultiInputPort(this, new PVector(-25, 0)));
     output = new OutputPort(this, new PVector(35, 0));
     bias.makeParam();
     name = "Linear Neuron";
