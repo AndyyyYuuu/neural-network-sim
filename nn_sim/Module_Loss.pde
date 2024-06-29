@@ -89,7 +89,7 @@ public class MeanModule extends Module{
     inputY.clear();
   }
 
-  private void calculate(){
+  public void calculate(){
     inputY.add(getInput(0).forward());
     next();
     this.outputNum = mean(inputY);
@@ -161,7 +161,7 @@ public class LossModule extends MeanModule{
     return mouseInRect(this.pos.x-40, this.pos.y-30, 80, 60);
   }
   
-  private void calculate(){
+  public void calculate(){
     inputY.add(getInput(0).forward());
     inputYPred.add(getInput(1).forward());
     next();
